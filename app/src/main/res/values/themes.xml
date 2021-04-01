@@ -1,0 +1,16 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.Lunatics" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/Malachite</item>
+        <item name="colorPrimaryVariant">@color/Calypso</item>
+        <item name="colorOnPrimary">@color/MountainMeadow</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/Elm</item>
+        <item name="colorSecondaryVariant">@color/BayOfMany</item>
+        <item name="colorOnSecondary">@color/Genoa</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+</resources>
