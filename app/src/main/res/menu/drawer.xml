@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/popularGame"
+        android:icon="@drawable/ic_popular"
+        android:title="@string/popularGames" />
+
+    <item
+        android:id="@+id/newGames"
+        android:icon="@drawable/ic_new"
+        android:title="@string/newGames" />
+
+    <item
+        android:id="@+id/gamesToCome"
+        android:icon="@drawable/ic_future"
+        android:title="@string/gamesToCome" />
+
+    <item
+        android:id="@+id/gamePlateforms"
+        android:icon="@drawable/ic_plateform"
+        android:title="@string/gamePateforms" />
+
+    <item
+        android:id="@+id/gameGenres"
+        android:icon="@drawable/ic_sword"
+        android:title="@string/gameGenres" />
+
+</menu>
