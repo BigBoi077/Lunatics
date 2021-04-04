@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Lunatics</string>
+    <string name="action_load_more">Load more</string>
+    <string name="default_page_welcome">Prompt welcome</string>
 </resources>
