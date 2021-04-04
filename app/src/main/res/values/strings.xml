@@ -2,4 +2,7 @@
     <string name="app_name">Lunatics</string>
     <string name="action_load_more">Load more</string>
     <string name="default_page_welcome">Prompt welcome</string>
+    <string name="default_game_date">2002-08-07</string>
+    <string name="default_rating">Rating | 83</string>
+    <string name="default_metacritic_rating">Metacritic | 76</string>
 </resources>
