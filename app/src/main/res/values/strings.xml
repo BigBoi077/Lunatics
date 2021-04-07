@@ -10,4 +10,6 @@
     <string name="gamesToCome">Games to come</string>
     <string name="gamePateforms">Plateforms</string>
     <string name="gameGenres">Genres</string>
+    <string name="actionOpen">Open</string>
+    <string name="actionClose">Close</string>
 </resources>
