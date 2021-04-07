@@ -33,6 +33,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         }
         val navigationView = findViewById<NavigationView>(R.id.drawerMenu)
+        navigationView.itemIconTintList = null
         navigationView.setNavigationItemSelectedListener(this)
     }
 
