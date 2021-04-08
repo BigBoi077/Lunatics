@@ -1,10 +1,11 @@
-package cegepst.example.lunatics
+package cegepst.example.lunatics.views
 
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
+import cegepst.example.lunatics.R
 import com.google.android.material.navigation.NavigationView
 
 private const val API_KEY = "762f85b6be7c4c90ba98b1c82b67a075"
@@ -17,6 +18,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initDrawerMenu()
+        initActivityStyle()
+    }
+
+    private fun initActivityStyle() {
+        supportActionBar?.title = ""
+        supportActionBar?.setLogo(R.drawable.ic_lunatics_logo_full)
     }
 
     private fun initDrawerMenu() {
