@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.drawerlayout.widget.DrawerLayout
 import cegepst.example.lunatics.R
+import cegepst.example.lunatics.models.DrawerMenuManager
 import com.google.android.material.navigation.NavigationView
 
 private const val API_KEY = "762f85b6be7c4c90ba98b1c82b67a075"
@@ -13,35 +13,23 @@ private const val API_KEY = "762f85b6be7c4c90ba98b1c82b67a075"
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
+    private lateinit var drawerMenuManager: DrawerMenuManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initDrawerMenu()
-        initActivityStyle()
-    }
-
-    private fun initActivityStyle() {
-        supportActionBar?.title = ""
-        supportActionBar?.setLogo(R.drawable.ic_lunatics_logo_full)
     }
 
     private fun initDrawerMenu() {
-        val drawerLayout = findViewById<DrawerLayout>(R.id.drawer)
-        actionBarDrawerToggle = ActionBarDrawerToggle(
-                this,
-                drawerLayout,
-                R.string.actionOpen,
-                R.string.actionClose
-        )
-        drawerLayout.addDrawerListener(actionBarDrawerToggle)
-        actionBarDrawerToggle.syncState()
-        if (supportActionBar != null) {
-            supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        }
-        val navigationView = findViewById<NavigationView>(R.id.drawerMenu)
-        navigationView.itemIconTintList = null
-        navigationView.setNavigationItemSelectedListener(this)
+        drawerMenuManager = DrawerMenuManager(this)
+        var lambda = { actionBarDrawerToggle: ActionBarDrawerToggle -> setDrawerMenu(actionBarDrawerToggle) }
+        drawerMenuManager.initDrawerMenu(lambda)
+        supportActionBar?.title = ""
+    }
+
+    private fun setDrawerMenu(element: ActionBarDrawerToggle) {
+        actionBarDrawerToggle = element
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -52,23 +40,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.popularGame -> {
-                return true
-            }
-            R.id.newGames -> {
-                return true
-            }
-            R.id.gamesToCome -> {
-                return true
-            }
-            R.id.gamePlateforms -> {
-                return true
-            }
-            R.id.gameGenres -> {
-                return true
-            }
-            else -> return false
-        }
+        return drawerMenuManager.handleChosenAction(item)
     }
 }
