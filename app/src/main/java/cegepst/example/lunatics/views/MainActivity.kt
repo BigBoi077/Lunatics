@@ -23,8 +23,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private fun initDrawerMenu() {
         drawerMenuManager = DrawerMenuManager(this)
-        var lambda = { actionBarDrawerToggle: ActionBarDrawerToggle -> setDrawerMenu(actionBarDrawerToggle) }
-        drawerMenuManager.initDrawerMenu(lambda)
+        drawerMenuManager.initDrawerMenu { drawer: ActionBarDrawerToggle -> setDrawerMenu(drawer) }
         supportActionBar?.title = ""
     }
 
