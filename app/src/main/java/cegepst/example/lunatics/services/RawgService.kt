@@ -13,17 +13,17 @@ interface RawgService {
 
     @GET("/")
     fun getGames(
-        @Query("apikey") apikey: String,
-        @Query("games") searchValue: String,
+            @Query("apikey") apikey: String,
+            @Query("games") searchValue: String,
     ): Call<GameResult>
 
     companion object {
         fun create(): RawgService {
             val retrofit = Retrofit.Builder()
-                .addConverterFactory(
-                    GsonConverterFactory.create()
-                ).baseUrl(BASE_URL)
-                .build()
+                    .addConverterFactory(
+                            GsonConverterFactory.create()
+                    ).baseUrl(BASE_URL)
+                    .build()
 
             return retrofit.create(RawgService::class.java)
         }

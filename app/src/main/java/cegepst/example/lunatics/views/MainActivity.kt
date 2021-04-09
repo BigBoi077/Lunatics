@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             // TODO : caster le games en ArrayList
             viewModel.games as ArrayList
             games.addAll(it)
-            adapter.notifyDataSetChanged()
+            viewModel.adapter.notifyDataSetChanged()
         })
     }
 
