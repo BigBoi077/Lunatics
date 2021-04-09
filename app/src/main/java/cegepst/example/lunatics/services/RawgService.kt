@@ -13,8 +13,7 @@ interface RawgService {
 
     @GET("/")
     fun getGames(
-            @Query("apikey") apikey: String,
-            @Query("games") searchValue: String,
+            @Query("apikey") apikey: String
     ): Call<GameResult>
 
     companion object {

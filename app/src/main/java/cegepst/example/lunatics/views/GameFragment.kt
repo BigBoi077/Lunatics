@@ -6,25 +6,27 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import cegepst.example.lunatics.R
 import cegepst.example.lunatics.viewModels.MainViewModel
 
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+private const val ARG_PROMPT_WELCOME = "prompt"
 
 class GameFragment : Fragment() {
+
     private lateinit var viewModel: MainViewModel
-    private var param1: String? = null
-    private var param2: String? = null
+    private lateinit var adapter: GameAdapter
+    private var welcome: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+            welcome = it.getString(ARG_PROMPT_WELCOME)
         }
         viewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
+        adapter = viewModel.adapter
+        view?.findViewById<RecyclerView>(R.id.listGames)?.layoutManager = LinearLayoutManager(view?.context)
     }
 
     override fun onCreateView(
@@ -36,17 +38,16 @@ class GameFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        view.findViewById<RecyclerView>(R.id.listGames)
+        view.findViewById<RecyclerView>(R.id.listGames).adapter = adapter
     }
 
     companion object {
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            GameFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+        fun newInstance(welcome: String) =
+                GameFragment().apply {
+                    arguments = Bundle().apply {
+                        putString(ARG_PROMPT_WELCOME, welcome)
+                    }
                 }
-            }
     }
 }

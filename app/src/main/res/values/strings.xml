@@ -12,4 +12,5 @@
     <string name="gameGenres">Genres</string>
     <string name="actionOpen">Open</string>
     <string name="actionClose">Close</string>
+    <string name="default_error">Unrecognized error during process</string>
 </resources>

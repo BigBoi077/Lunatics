@@ -37,12 +37,15 @@
             android:background="@color/JacksonPurple" />
 
         <TextView
-            android:id="@+id/promtPageWelcome"
+            android:id="@+id/errorBubble"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="16dp"
-            android:text="@string/default_page_welcome"
+            android:background="@drawable/border"
+            android:padding="8dp"
+            android:text="@string/default_error"
+            android:visibility="gone"
             android:textSize="16sp" />
 
         <LinearLayout

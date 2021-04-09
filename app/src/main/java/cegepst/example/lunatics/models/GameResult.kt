@@ -1,3 +1,7 @@
 package cegepst.example.lunatics.models
 
-class GameResult
+import com.google.gson.annotations.SerializedName
+
+class GameResult(
+        @SerializedName("results") val games: List<Game>
+)
