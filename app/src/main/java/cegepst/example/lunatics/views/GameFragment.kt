@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,6 +18,7 @@ class GameFragment : Fragment() {
 
     private lateinit var viewModel: MainViewModel
     private lateinit var adapter: GameAdapter
+    private lateinit var recyclerView: RecyclerView
     private var welcome: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,8 +27,7 @@ class GameFragment : Fragment() {
             welcome = it.getString(ARG_PROMPT_WELCOME)
         }
         viewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
-        adapter = viewModel.adapter
-        view?.findViewById<RecyclerView>(R.id.listGames)?.layoutManager = LinearLayoutManager(view?.context)
+        recyclerView = view?.findViewById(R.id.listGames)!!
     }
 
     override fun onCreateView(
@@ -39,6 +40,8 @@ class GameFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         view.findViewById<RecyclerView>(R.id.listGames).adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(view.context)
+        view.findViewById<TextView>(R.id.promptPageWelcome).text = welcome
     }
 
     companion object {

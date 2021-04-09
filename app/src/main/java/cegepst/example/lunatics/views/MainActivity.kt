@@ -21,12 +21,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        initDrawerMenu()
+        initFragment()
+        initVariables()
+        loadContent()
+    }
+
+    private fun initVariables() {
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         viewModel.giveComponents(findViewById(R.id.errorBubble), findViewById(R.id.listGames))
         games = ArrayList()
-        initDrawerMenu()
-        initFragment()
-        loadContent()
     }
 
     private fun initFragment() {
