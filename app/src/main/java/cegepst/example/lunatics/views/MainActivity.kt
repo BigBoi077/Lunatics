@@ -2,6 +2,7 @@ package cegepst.example.lunatics.views
 
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -36,7 +37,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private fun initFragment() {
         supportFragmentManager.beginTransaction()
-                .add(R.id.gameContainer, GameFragment.newInstance("Welcome", adapter))
+                .add(R.id.gameContainer, GameFragment.newInstance("Welcome", adapter, findViewById(R.id.header)))
                 .commit()
     }
 
@@ -68,5 +69,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private fun setDrawerMenu(element: ActionBarDrawerToggle) {
         actionBarDrawerToggle = element
+    }
+
+    fun actionLoad(view: View) {
+
     }
 }

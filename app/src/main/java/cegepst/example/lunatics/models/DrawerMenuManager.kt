@@ -7,9 +7,8 @@ import cegepst.example.lunatics.R
 import cegepst.example.lunatics.views.MainActivity
 import com.google.android.material.navigation.NavigationView
 
-class DrawerMenuManager(mainActivity: MainActivity) {
+class DrawerMenuManager(private var mainActivity: MainActivity) {
 
-    private var mainActivity = mainActivity
     private lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
 
     fun handleChosenAction(item: MenuItem): Boolean {

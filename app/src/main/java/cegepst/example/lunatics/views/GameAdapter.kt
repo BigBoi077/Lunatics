@@ -27,9 +27,9 @@ class GameAdapter(private val games: ArrayList<Game>) :
         fun setContent(game: Game) {
             Glide.with(itemView).load(game.imageUrl).into(image)
             name.text = game.name
-            rating.text = game.rating.toString()
-            metacritic.text = game.metacritic.toString()
-            released.text = game.released
+            rating.text = "Rating | ${game.rating}"
+            metacritic.text = "Metacritic | ${game.metacritic}"
+            released.text = "Released : ${game.released}"
             button.setOnClickListener {
                 val intent = Intent(itemView.context, SingleGameActivity::class.java)
                 intent.putExtra("gameId", game.id)

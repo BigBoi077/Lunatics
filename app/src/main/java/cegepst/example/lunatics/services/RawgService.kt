@@ -14,7 +14,8 @@ interface RawgService {
 
     @GET(GAME_ENDPOINT)
     fun getGames(
-            @Query("key") apikey: String
+            @Query("key") apikey: String,
+            @Query("page_size") size: Int
     ): Call<GameResult>
 
     companion object {

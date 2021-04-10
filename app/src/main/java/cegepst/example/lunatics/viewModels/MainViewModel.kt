@@ -1,5 +1,6 @@
 package cegepst.example.lunatics.viewModels
 
+import android.util.Log
 import android.widget.TextView
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -9,6 +10,7 @@ import cegepst.example.lunatics.models.Game
 import cegepst.example.lunatics.models.GameResult
 import cegepst.example.lunatics.models.LoadingManager
 import cegepst.example.lunatics.services.RawgService
+import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -35,9 +37,12 @@ class MainViewModel : ViewModel() {
 
     fun fetchGames() {
         loadingManager.isLoading()
-        rawgService.getGames(API_KEY).enqueue(object : Callback<GameResult> {
+        rawgService.getGames(API_KEY, 10).enqueue(object : Callback<GameResult> {
             override fun onResponse(call: Call<GameResult>, response: Response<GameResult>) {
                 games.value = response.body()!!.games
+
+                Log.d("RESPONSE", Gson().toJson(response.body()))
+
                 loadingManager.isSuccess()
             }
 
