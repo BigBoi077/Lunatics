@@ -12,6 +12,9 @@ private const val GAME_ENDPOINT = "games"
 
 interface RawgService {
 
+    val next: String
+        get() = ""
+
     @GET(GAME_ENDPOINT)
     fun getGames(
             @Query("key") apikey: String,

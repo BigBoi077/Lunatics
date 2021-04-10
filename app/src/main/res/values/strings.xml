@@ -13,4 +13,5 @@
     <string name="actionOpen">Open</string>
     <string name="actionClose">Close</string>
     <string name="default_error">Unrecognized error during process</string>
+    <string name="noMoreGames">The load limit for games is 50 :(</string>
 </resources>

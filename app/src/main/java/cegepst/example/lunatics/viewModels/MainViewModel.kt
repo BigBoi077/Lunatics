@@ -1,6 +1,5 @@
 package cegepst.example.lunatics.viewModels
 
-import android.util.Log
 import android.widget.TextView
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -10,7 +9,6 @@ import cegepst.example.lunatics.models.Game
 import cegepst.example.lunatics.models.GameResult
 import cegepst.example.lunatics.models.LoadingManager
 import cegepst.example.lunatics.services.RawgService
-import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -19,6 +17,7 @@ private const val API_KEY = "762f85b6be7c4c90ba98b1c82b67a075"
 
 class MainViewModel : ViewModel() {
 
+    var wantedSize = 10
     val games = MutableLiveData(listOf<Game>())
     private val loadingManager = LoadingManager()
     private val errorManager = ErrorManager()
@@ -37,13 +36,15 @@ class MainViewModel : ViewModel() {
 
     fun fetchGames() {
         loadingManager.isLoading()
-        rawgService.getGames(API_KEY, 10).enqueue(object : Callback<GameResult> {
+        rawgService.getGames(API_KEY, wantedSize).enqueue(object : Callback<GameResult> {
             override fun onResponse(call: Call<GameResult>, response: Response<GameResult>) {
-                games.value = response.body()!!.games
-
-                Log.d("RESPONSE", Gson().toJson(response.body()))
-
+                if (games.value!!.isEmpty()) {
+                    games.value = response.body()!!.games
+                } else {
+                    makeTempList(games, response)
+                }
                 loadingManager.isSuccess()
+                wantedSize += 10
             }
 
             override fun onFailure(call: Call<GameResult>, t: Throwable) {
@@ -51,5 +52,12 @@ class MainViewModel : ViewModel() {
                 loadingManager.isError()
             }
         })
+    }
+
+    private fun makeTempList(data: MutableLiveData<List<Game>>, response: Response<GameResult>) {
+        val list = data.value as ArrayList<Game>
+        list.clear()
+        list.addAll(response.body()!!.games)
+        data.value = list
     }
 }

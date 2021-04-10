@@ -3,6 +3,7 @@ package cegepst.example.lunatics.views
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -11,6 +12,8 @@ import cegepst.example.lunatics.models.DrawerMenuManager
 import cegepst.example.lunatics.models.Game
 import cegepst.example.lunatics.viewModels.MainViewModel
 import com.google.android.material.navigation.NavigationView
+
+private const val MAX_GAMES = 50
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -72,6 +75,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     fun actionLoad(view: View) {
+        if (canLoadMoreGames()) {
+            viewModel.fetchGames()
+        } else {
+            alert(resources.getString(R.string.noMoreGames))
+        }
+    }
 
+    private fun alert(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun canLoadMoreGames(): Boolean {
+        return games.size < MAX_GAMES
     }
 }
