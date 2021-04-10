@@ -8,12 +8,13 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 private const val BASE_URL = "https://api.rawg.io/api/"
+private const val GAME_ENDPOINT = "games"
 
 interface RawgService {
 
-    @GET("/")
+    @GET(GAME_ENDPOINT)
     fun getGames(
-            @Query("apikey") apikey: String
+            @Query("key") apikey: String
     ): Call<GameResult>
 
     companion object {

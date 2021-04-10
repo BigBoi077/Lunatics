@@ -4,25 +4,22 @@ import android.widget.TextView
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.recyclerview.widget.RecyclerView
 import cegepst.example.lunatics.models.ErrorManager
 import cegepst.example.lunatics.models.Game
 import cegepst.example.lunatics.models.GameResult
 import cegepst.example.lunatics.models.LoadingManager
 import cegepst.example.lunatics.services.RawgService
-import cegepst.example.lunatics.views.GameAdapter
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 private const val API_KEY = "762f85b6be7c4c90ba98b1c82b67a075"
 
-class MainViewModel(component: TextView) : ViewModel() {
+class MainViewModel : ViewModel() {
 
-    private lateinit var errorManager: ErrorManager
-    private val games = MutableLiveData(listOf<Game>())
-    lateinit var adapter: GameAdapter
+    val games = MutableLiveData(listOf<Game>())
     private val loadingManager = LoadingManager()
+    private val errorManager = ErrorManager()
 
     private val rawgService by lazy {
         RawgService.create()
@@ -32,8 +29,8 @@ class MainViewModel(component: TextView) : ViewModel() {
         return games
     }
 
-    fun giveComponents(textView: TextView, recyclerView: RecyclerView) {
-        errorManager.setComponents(textView, recyclerView)
+    fun giveComponents(textView: TextView) {
+        errorManager.setComponents(textView)
     }
 
     fun fetchGames() {

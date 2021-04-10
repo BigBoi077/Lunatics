@@ -16,25 +16,28 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
     private lateinit var drawerMenuManager: DrawerMenuManager
     private lateinit var viewModel: MainViewModel
-    private lateinit var games: ArrayList<Game>
+    private lateinit var adapter: GameAdapter
+    private var games = ArrayList<Game>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initDrawerMenu()
-        initFragment()
         initVariables()
+        initFragment()
         loadContent()
     }
 
     private fun initVariables() {
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        viewModel.giveComponents(findViewById(R.id.errorBubble), findViewById(R.id.listGames))
-        games = ArrayList()
+        viewModel.giveComponents(findViewById(R.id.errorBubble))
+        adapter = GameAdapter(games)
     }
 
     private fun initFragment() {
-        supportFragmentManager.beginTransaction().add(R.id.gameContainer, GameFragment.newInstance("Welcome"))
+        supportFragmentManager.beginTransaction()
+                .add(R.id.gameContainer, GameFragment.newInstance("Welcome", adapter))
+                .commit()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -53,7 +56,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         viewModel.getGames().observe(this, {
             games.clear()
             games.addAll(it)
-            viewModel.adapter.notifyDataSetChanged()
+            adapter.notifyDataSetChanged()
         })
     }
 

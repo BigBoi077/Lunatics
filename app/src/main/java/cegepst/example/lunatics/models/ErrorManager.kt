@@ -3,12 +3,10 @@ package cegepst.example.lunatics.models
 import android.view.View
 import android.widget.TextView
 import androidx.core.view.isVisible
-import androidx.recyclerview.widget.RecyclerView
 
 class ErrorManager {
 
     private lateinit var errorContainer: TextView
-    private lateinit var list: RecyclerView
     private var error = ""
 
     fun reset() {
@@ -21,9 +19,8 @@ class ErrorManager {
         errorContainer.text = error
     }
 
-    fun setComponents(component: TextView, recyclerView: RecyclerView) {
+    fun setComponents(component: TextView) {
         errorContainer = component
-        list = recyclerView
     }
 
     private fun toggleVisibility() {

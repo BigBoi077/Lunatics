@@ -17,8 +17,8 @@ private const val ARG_PROMPT_WELCOME = "prompt"
 class GameFragment : Fragment() {
 
     private lateinit var viewModel: MainViewModel
-    private lateinit var adapter: GameAdapter
     private lateinit var recyclerView: RecyclerView
+    lateinit var adapter: GameAdapter
     private var welcome: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,7 +27,6 @@ class GameFragment : Fragment() {
             welcome = it.getString(ARG_PROMPT_WELCOME)
         }
         viewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
-        recyclerView = view?.findViewById(R.id.listGames)!!
     }
 
     override fun onCreateView(
@@ -39,18 +38,20 @@ class GameFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        view.findViewById<RecyclerView>(R.id.listGames).adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(view.context)
+        this.recyclerView = view.findViewById(R.id.listGames)
+        this.recyclerView.adapter = adapter
+        this.recyclerView.layoutManager = LinearLayoutManager(view.context)
         view.findViewById<TextView>(R.id.promptPageWelcome).text = welcome
     }
 
     companion object {
         @JvmStatic
-        fun newInstance(welcome: String) =
+        fun newInstance(welcome: String, adapter: GameAdapter) =
                 GameFragment().apply {
                     arguments = Bundle().apply {
                         putString(ARG_PROMPT_WELCOME, welcome)
                     }
+                    this.adapter = adapter
                 }
     }
 }
