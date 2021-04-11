@@ -1,6 +1,7 @@
-package cegepst.example.lunatics.models
+package cegepst.example.lunatics.models.managers
 
 import androidx.lifecycle.MutableLiveData
+import cegepst.example.lunatics.models.baseModels.States
 
 class LoadingManager {
 

@@ -1,4 +1,4 @@
-package cegepst.example.lunatics.models
+package cegepst.example.lunatics.models.baseModels
 
 enum class States(val value: Int) {
     NONE(0),

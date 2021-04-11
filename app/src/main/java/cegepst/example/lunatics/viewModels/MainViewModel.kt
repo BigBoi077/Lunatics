@@ -4,10 +4,10 @@ import android.widget.TextView
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import cegepst.example.lunatics.models.ErrorManager
-import cegepst.example.lunatics.models.Game
-import cegepst.example.lunatics.models.GameResult
-import cegepst.example.lunatics.models.LoadingManager
+import cegepst.example.lunatics.models.baseModels.Game
+import cegepst.example.lunatics.models.managers.ErrorManager
+import cegepst.example.lunatics.models.managers.LoadingManager
+import cegepst.example.lunatics.models.restults.GameResult
 import cegepst.example.lunatics.services.RawgService
 import retrofit2.Call
 import retrofit2.Callback

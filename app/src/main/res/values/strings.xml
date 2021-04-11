@@ -19,4 +19,11 @@
     <string name="action_see_same_lineup">Same series</string>
     <string name="action_trophy">Trophies</string>
     <string name="action_return">Go back</string>
+    <string name="game_image">Main game image</string>
+    <string name="title_activity_same_series">SameSeriesActivity</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="hello_world">Hello Square World!</string>
 </resources>

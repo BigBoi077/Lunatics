@@ -1,4 +1,4 @@
-package cegepst.example.lunatics.models
+package cegepst.example.lunatics.models.managers
 
 import android.view.View
 import android.widget.TextView

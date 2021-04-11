@@ -1,5 +1,6 @@
-package cegepst.example.lunatics.models
+package cegepst.example.lunatics.models.restults
 
+import cegepst.example.lunatics.models.baseModels.Game
 import com.google.gson.annotations.SerializedName
 
 class GameResult(

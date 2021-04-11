@@ -1,13 +1,13 @@
-package cegepst.example.lunatics.models
+package cegepst.example.lunatics.models.managers
 
+import android.app.Activity
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.drawerlayout.widget.DrawerLayout
 import cegepst.example.lunatics.R
-import cegepst.example.lunatics.views.MainActivity
 import com.google.android.material.navigation.NavigationView
 
-class DrawerMenuManager(private var mainActivity: MainActivity) {
+class DrawerMenuManager(private var activity: Activity, private var supportActionBar: androidx.appcompat.app.ActionBar?) {
 
     private lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
 
@@ -33,9 +33,9 @@ class DrawerMenuManager(private var mainActivity: MainActivity) {
     }
 
     fun initDrawerMenu(lambda: (ActionBarDrawerToggle) -> Unit) {
-        val drawerLayout = mainActivity.findViewById<DrawerLayout>(R.id.drawer)
+        val drawerLayout = activity.findViewById<DrawerLayout>(R.id.drawer)
         actionBarDrawerToggle = ActionBarDrawerToggle(
-                mainActivity,
+                activity,
                 drawerLayout,
                 R.string.actionOpen,
                 R.string.actionClose
@@ -43,11 +43,10 @@ class DrawerMenuManager(private var mainActivity: MainActivity) {
         lambda(actionBarDrawerToggle)
         drawerLayout.addDrawerListener(actionBarDrawerToggle)
         actionBarDrawerToggle.syncState()
-        if (mainActivity.supportActionBar != null) {
-            mainActivity.supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        if (supportActionBar != null) {
+            supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         }
-        val navigationView = mainActivity.findViewById<NavigationView>(R.id.drawerMenu)
-        navigationView.setNavigationItemSelectedListener(mainActivity)
+        val navigationView = activity.findViewById<NavigationView>(R.id.drawerMenu)
         navigationView.itemIconTintList = null
     }
 }

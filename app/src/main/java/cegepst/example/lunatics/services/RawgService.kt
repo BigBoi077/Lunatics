@@ -1,6 +1,6 @@
 package cegepst.example.lunatics.services
 
-import cegepst.example.lunatics.models.GameResult
+import cegepst.example.lunatics.models.restults.GameResult
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

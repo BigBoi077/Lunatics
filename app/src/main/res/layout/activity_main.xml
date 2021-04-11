@@ -8,7 +8,7 @@
     android:background="@color/SoftPeach"
     android:padding="16dp"
     android:id="@+id/drawer"
-    tools:context=".views.MainActivity">
+    tools:context=".views.activities.MainActivity">
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/drawerMenu"

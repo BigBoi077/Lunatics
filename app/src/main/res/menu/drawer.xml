@@ -18,7 +18,7 @@
 
     <item
         android:id="@+id/gamePlatforms"
-        android:icon="@drawable/ic_plateform"
+        android:icon="@drawable/ic_controller"
         android:title="@string/gamePlatforms" />
 
     <item

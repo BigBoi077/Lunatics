@@ -8,8 +8,8 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import cegepst.example.lunatics.R
-import cegepst.example.lunatics.models.DrawerMenuManager
-import cegepst.example.lunatics.models.Game
+import cegepst.example.lunatics.models.baseModels.Game
+import cegepst.example.lunatics.models.managers.DrawerMenuManager
 import cegepst.example.lunatics.viewModels.MainViewModel
 import cegepst.example.lunatics.views.adapters.GameAdapter
 import cegepst.example.lunatics.views.fragments.GameFragment
@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun initDrawerMenu() {
-        drawerMenuManager = DrawerMenuManager(this)
+        drawerMenuManager = DrawerMenuManager(this, supportActionBar)
         drawerMenuManager.initDrawerMenu { drawer: ActionBarDrawerToggle -> setDrawerMenu(drawer) }
         supportActionBar?.title = ""
     }

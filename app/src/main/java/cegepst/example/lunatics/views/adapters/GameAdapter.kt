@@ -1,5 +1,6 @@
 package cegepst.example.lunatics.views.adapters
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import cegepst.example.lunatics.R
-import cegepst.example.lunatics.models.Game
+import cegepst.example.lunatics.models.baseModels.Game
 import cegepst.example.lunatics.views.activities.SingleGameActivity
 import com.bumptech.glide.Glide
 
@@ -25,6 +26,7 @@ class GameAdapter(private val games: ArrayList<Game>) :
         private val released: TextView = itemView.findViewById(R.id.gameReleasedDate)
         private val button: ImageButton = itemView.findViewById(R.id.actionGetSingleGame)
 
+        @SuppressLint("SetTextI18n")
         fun setContent(game: Game) {
             Glide.with(itemView).load(game.imageUrl).into(image)
             name.text = game.name
