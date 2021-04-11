@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import cegepst.example.lunatics.R
 import cegepst.example.lunatics.models.baseModels.Game
+import cegepst.example.lunatics.models.interfaces.BaseActivity
 import cegepst.example.lunatics.models.managers.DrawerMenuManager
 import cegepst.example.lunatics.viewModels.MainViewModel
 import cegepst.example.lunatics.views.adapters.GameAdapter
@@ -17,7 +18,8 @@ import com.google.android.material.navigation.NavigationView
 
 private const val MAX_GAMES = 50
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
+    BaseActivity {
 
     private lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
     private lateinit var drawerMenuManager: DrawerMenuManager
@@ -34,16 +36,19 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         loadContent()
     }
 
-    private fun initVariables() {
+    override fun initVariables() {
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         viewModel.giveComponents(findViewById(R.id.errorBubble))
         adapter = GameAdapter(games)
     }
 
-    private fun initFragment() {
+    override fun initFragment() {
         supportFragmentManager.beginTransaction()
-                .add(R.id.gameContainer, GameFragment.newInstance("Welcome", adapter, findViewById(R.id.header)))
-                .commit()
+            .add(
+                R.id.gameContainer,
+                GameFragment.newInstance("Welcome", adapter, findViewById(R.id.header))
+            )
+            .commit()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -57,7 +62,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return drawerMenuManager.handleChosenAction(item)
     }
 
-    private fun loadContent() {
+    override fun loadContent() {
         viewModel.fetchGames()
         viewModel.getGames().observe(this, {
             games.clear()
@@ -66,7 +71,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         })
     }
 
-    private fun initDrawerMenu() {
+    override fun initDrawerMenu() {
         drawerMenuManager = DrawerMenuManager(this, supportActionBar)
         drawerMenuManager.initDrawerMenu { drawer: ActionBarDrawerToggle -> setDrawerMenu(drawer) }
         supportActionBar?.title = ""

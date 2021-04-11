@@ -22,7 +22,7 @@ class DrawerMenuManager(private var activity: Activity, private var supportActio
             R.id.gamesToCome -> {
                 return true
             }
-            R.id.gamePlatforms -> {
+            R.id.listPlatforms -> {
                 return true
             }
             R.id.gameGenres -> {

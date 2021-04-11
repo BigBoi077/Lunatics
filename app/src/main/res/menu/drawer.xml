@@ -17,7 +17,7 @@
         android:title="@string/gamesToCome" />
 
     <item
-        android:id="@+id/gamePlatforms"
+        android:id="@+id/listPlatforms"
         android:icon="@drawable/ic_controller"
         android:title="@string/gamePlatforms" />
 

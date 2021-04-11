@@ -14,8 +14,8 @@
 
         <ImageView
             android:id="@+id/gameImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
             android:layout_gravity="center"
             android:layout_margin="16dp"
             android:contentDescription="@string/game_image"
@@ -68,7 +68,7 @@
                 android:layout_weight="15">
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/gamePlatforms"
+                    android:id="@+id/listPlatforms"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -82,7 +82,7 @@
                 android:orientation="vertical">
 
                 <Button
-                    android:id="@+id/sameLineup"
+                    android:id="@+id/actionSameLineup"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/Malachite"
@@ -91,7 +91,7 @@
                     android:textColor="@color/JacksonPurple" />
 
                 <Button
-                    android:id="@+id/game"
+                    android:id="@+id/actionTrophies"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/Malachite"
@@ -105,6 +105,7 @@
         </LinearLayout>
 
         <Button
+            android:id="@+id/actionReturn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
