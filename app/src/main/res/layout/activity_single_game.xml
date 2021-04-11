@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/drawer"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/SoftPeach"
     android:orientation="vertical"
+    android:id="@+id/drawer"
     android:padding="16dp"
-    tools:context=".views.SingleGameActivity">
+    android:background="@color/SoftPeach"
+    tools:context=".views.activities.SingleGameActivity">
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/drawerMenu"
@@ -24,41 +24,50 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="16dp"
-            android:src="@drawable/ic_lunatics_logo_full" />
-
-        <View
+        <LinearLayout
+            android:id="@+id/header"
             android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@color/JacksonPurple" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_lunatics_logo_full" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/JacksonPurple" />
+
+            <TextView
+                android:id="@+id/errorBubble"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/border"
+                android:padding="8dp"
+                android:text="@string/default_error"
+                android:textSize="16sp"
+                android:visibility="gone" />
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <FrameLayout
-                android:id="@+id/gameContainer"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:id="@+id/singleGameContainer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:gravity="center" />
 
         </LinearLayout>
-
-        <Button
-            android:id="@+id/textButton"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:drawableLeft="@drawable/ic_add"
-            android:text="@string/action_load_more" />
 
     </LinearLayout>
 

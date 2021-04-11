@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Lunatics">
-        <activity android:name=".views.SingleGameActivity"></activity>
+        <activity android:name=".views.activities.SingleGameActivity"></activity>
         <activity android:name=".views.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -17,9 +17,9 @@
         android:title="@string/gamesToCome" />
 
     <item
-        android:id="@+id/gamePlateforms"
+        android:id="@+id/gamePlatforms"
         android:icon="@drawable/ic_plateform"
-        android:title="@string/gamePateforms" />
+        android:title="@string/gamePlatforms" />
 
     <item
         android:id="@+id/gameGenres"

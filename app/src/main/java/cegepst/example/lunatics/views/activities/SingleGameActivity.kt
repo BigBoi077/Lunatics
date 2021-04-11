@@ -1,4 +1,4 @@
-package cegepst.example.lunatics.views
+package cegepst.example.lunatics.views.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

@@ -1,4 +1,4 @@
-package cegepst.example.lunatics.views
+package cegepst.example.lunatics.views.adapters
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import cegepst.example.lunatics.R
 import cegepst.example.lunatics.models.Game
+import cegepst.example.lunatics.views.activities.SingleGameActivity
 import com.bumptech.glide.Glide
 
 class GameAdapter(private val games: ArrayList<Game>) :

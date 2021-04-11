@@ -1,4 +1,4 @@
-package cegepst.example.lunatics.views
+package cegepst.example.lunatics.views.activities
 
 import android.os.Bundle
 import android.view.MenuItem
@@ -11,6 +11,8 @@ import cegepst.example.lunatics.R
 import cegepst.example.lunatics.models.DrawerMenuManager
 import cegepst.example.lunatics.models.Game
 import cegepst.example.lunatics.viewModels.MainViewModel
+import cegepst.example.lunatics.views.adapters.GameAdapter
+import cegepst.example.lunatics.views.fragments.GameFragment
 import com.google.android.material.navigation.NavigationView
 
 private const val MAX_GAMES = 50

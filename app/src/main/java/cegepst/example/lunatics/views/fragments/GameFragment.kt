@@ -1,4 +1,4 @@
-package cegepst.example.lunatics.views
+package cegepst.example.lunatics.views.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import cegepst.example.lunatics.R
 import cegepst.example.lunatics.viewModels.MainViewModel
+import cegepst.example.lunatics.views.adapters.GameAdapter
 
 private const val ARG_PROMPT_WELCOME = "prompt"
 

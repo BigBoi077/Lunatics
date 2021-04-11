@@ -2,16 +2,21 @@
     <string name="app_name">Lunatics</string>
     <string name="action_load_more">Load more</string>
     <string name="default_page_welcome">Prompt welcome</string>
-    <string name="default_game_date">2002-08-07</string>
+    <string name="default_game_date">2002–08-07</string>
     <string name="default_rating">Rating | 83</string>
     <string name="default_metacritic_rating">Metacritic | 76</string>
     <string name="popularGames">Popular game</string>
     <string name="newGames">New games</string>
     <string name="gamesToCome">Games to come</string>
-    <string name="gamePateforms">Plateforms</string>
+    <string name="gamePlatforms">Platforms</string>
     <string name="gameGenres">Genres</string>
     <string name="actionOpen">Open</string>
     <string name="actionClose">Close</string>
     <string name="default_error">Unrecognized error during process</string>
     <string name="noMoreGames">The load limit for games is 50 :(</string>
+    <string name="default_website">www.lunatics.io</string>
+    <string name="default_platform">Stadia</string>
+    <string name="action_see_same_lineup">Same series</string>
+    <string name="action_trophy">Trophies</string>
+    <string name="action_return">Go back</string>
 </resources>
