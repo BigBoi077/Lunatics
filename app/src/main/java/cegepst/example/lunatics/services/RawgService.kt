@@ -27,14 +27,14 @@ interface RawgService {
 
     @GET("$GAME_ENDPOINT/{id}")
     fun getSingleGame(
-        @Query("key") apikey: String,
-        @Path("id") gameId: String
+        @Path("id") gameId: String,
+        @Query("key") apikey: String
     ): Call<Game>
 
     @GET("$GAME_ENDPOINT/{id}/$ACHIEVEMENT_ENDPOINT")
     fun getAchievements(
-        @Query("key") apikey: String,
-        @Path("id") gameId: String
+        @Path("id") gameId: String,
+        @Query("key") apikey: String
     ): Call<AchievementsResults>
 
     companion object {

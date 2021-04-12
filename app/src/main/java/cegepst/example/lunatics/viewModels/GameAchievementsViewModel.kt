@@ -27,7 +27,7 @@ class GameAchievementsViewModel : ViewModel() {
     }
 
     fun fetchGameAchievements(gameId: Int, lambda: (ArrayList<Achievement>) -> Unit) {
-        rawgService.getAchievements(RawgService.API_KEY, gameId.toString())
+        rawgService.getAchievements(gameId.toString(), RawgService.API_KEY)
             .enqueue(object : Callback<AchievementsResults> {
                 override fun onResponse(
                     call: Call<AchievementsResults>,

@@ -36,6 +36,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         loadContent()
     }
 
+    override fun initDrawerMenu() {
+        drawerMenuManager = DrawerMenuManager(this, supportActionBar)
+        drawerMenuManager.initDrawerMenu { drawer: ActionBarDrawerToggle -> setDrawerMenu(drawer) }
+        supportActionBar?.title = ""
+    }
+
     override fun initVariables() {
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         viewModel.giveComponents(findViewById(R.id.errorBubble))
@@ -51,17 +57,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             .commit()
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
-            return true
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        return drawerMenuManager.handleChosenAction(item)
-    }
-
     override fun loadContent() {
         viewModel.fetchGames()
         viewModel.getGames().observe(this, {
@@ -71,10 +66,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         })
     }
 
-    override fun initDrawerMenu() {
-        drawerMenuManager = DrawerMenuManager(this, supportActionBar)
-        drawerMenuManager.initDrawerMenu { drawer: ActionBarDrawerToggle -> setDrawerMenu(drawer) }
-        supportActionBar?.title = ""
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
+            return true
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        return drawerMenuManager.handleChosenAction(item)
     }
 
     private fun setDrawerMenu(element: ActionBarDrawerToggle) {
