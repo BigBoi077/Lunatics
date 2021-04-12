@@ -60,7 +60,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:layout_weight="1"
-                android:drawablePadding="8dp"
+                android:drawablePadding="16dp"
                 android:gravity="center"
                 android:text="@string/defaultAchievementPercentage"
                 android:textSize="16sp"
