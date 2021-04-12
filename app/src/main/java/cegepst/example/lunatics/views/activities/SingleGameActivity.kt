@@ -36,7 +36,6 @@ class SingleGameActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
     override fun initDrawerMenu() {
         drawerMenuManager = DrawerMenuManager(this, supportActionBar)
         drawerMenuManager.initDrawerMenu { drawer: ActionBarDrawerToggle -> setDrawerMenu(drawer) }
-        supportActionBar?.title = ""
     }
 
     override fun initVariables() {
@@ -55,6 +54,7 @@ class SingleGameActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
     }
 
     private fun launchFragment(game: Game) {
+        supportActionBar?.title = game.name
         supportFragmentManager.beginTransaction()
             .add(
                 R.id.singleGameContainer,

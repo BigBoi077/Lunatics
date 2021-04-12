@@ -18,7 +18,7 @@ class PlatformAdapter(private val platforms: ArrayList<Platform>) :
 
         @SuppressLint("SetTextI18n")
         fun setContent(platform: Platform) {
-            name.text = platform.name
+            name.text = platform.content.name
         }
     }
 

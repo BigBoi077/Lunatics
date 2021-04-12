@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,6 +23,7 @@ import cegepst.example.lunatics.views.activities.MainActivity
 import cegepst.example.lunatics.views.activities.SameSeriesActivity
 import cegepst.example.lunatics.views.adapters.PlatformAdapter
 import com.bumptech.glide.Glide
+import com.google.gson.Gson
 
 private const val ARG_GAME_ID = "gameId"
 
@@ -59,6 +61,11 @@ class SingleGameFragment : Fragment() {
         this.recyclerView = view!!.findViewById(R.id.listPlatforms)
         this.recyclerView.adapter = PlatformAdapter(game.platforms)
         this.recyclerView.layoutManager = LinearLayoutManager(view!!.context)
+
+        Log.d("PLATFORM", game.platforms.size.toString())
+        Log.d("GAME", Gson().toJson(game))
+
+        this.adapter.notifyDataSetChanged()
         Glide.with(view!!.context).load(game.imageUrl).into(view?.findViewById(R.id.gameImage)!!)
         view!!.findViewById<TextView>(R.id.gameName).text = game.name
         view!!.findViewById<TextView>(R.id.gameRating).text = "Rating | ${game.rating}"
