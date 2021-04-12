@@ -1,6 +1,7 @@
 package cegepst.example.lunatics.services
 
 import cegepst.example.lunatics.models.baseModels.Game
+import cegepst.example.lunatics.models.results.AchievementsResults
 import cegepst.example.lunatics.models.results.GameResult
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -11,6 +12,7 @@ import retrofit2.http.Query
 
 private const val BASE_URL = "https://api.rawg.io/api/"
 private const val GAME_ENDPOINT = "games"
+private const val ACHIEVEMENT_ENDPOINT = "achievements"
 
 interface RawgService {
 
@@ -27,6 +29,11 @@ interface RawgService {
     fun getSingleGame(
         @Path("id") gameId: String
     ): Call<Game>
+
+    @GET("$GAME_ENDPOINT/{id}/$ACHIEVEMENT_ENDPOINT")
+    fun getAchievements(
+        @Path("id") gameId: String
+    ): Call<AchievementsResults>
 
     companion object {
         fun create(): RawgService {

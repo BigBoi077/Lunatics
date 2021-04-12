@@ -11,13 +11,11 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import cegepst.example.lunatics.R
 import cegepst.example.lunatics.models.baseModels.Game
 import cegepst.example.lunatics.models.baseModels.Platform
-import cegepst.example.lunatics.viewModels.SingleGameViewModel
 import cegepst.example.lunatics.views.activities.GameAchievementActivity
 import cegepst.example.lunatics.views.activities.MainActivity
 import cegepst.example.lunatics.views.activities.SameSeriesActivity
@@ -29,7 +27,6 @@ private const val ARG_GAME_ID = "gameId"
 
 class SingleGameFragment : Fragment() {
 
-    private lateinit var viewModel: SingleGameViewModel
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: PlatformAdapter
     private lateinit var game: Game
@@ -40,7 +37,6 @@ class SingleGameFragment : Fragment() {
         arguments?.let {
             gameId = it.getInt(ARG_GAME_ID)
         }
-        viewModel = ViewModelProvider(requireActivity()).get(SingleGameViewModel::class.java)
     }
 
     override fun onCreateView(

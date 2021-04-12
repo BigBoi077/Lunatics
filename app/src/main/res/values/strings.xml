@@ -21,11 +21,6 @@
     <string name="action_return">Go back</string>
     <string name="game_image">Main game image</string>
     <string name="title_activity_same_series">SameSeriesActivity</string>
-    <!--
-    This string is used for square devices and overridden by hello_world in
-    values-round/strings.xml for round devices.
-    -->
-    <string name="hello_world">Hello Square World!</string>
     <string name="listPlatforms">Available on</string>
     <string name="seeAlso">See also</string>
     <string name="defaultAchievement">Reach for the stars</string>
