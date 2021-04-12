@@ -26,4 +26,6 @@
     <string name="defaultAchievement">Reach for the stars</string>
     <string name="defaultAchievementDescription">Get 150 stars in every world</string>
     <string name="defaultAchievementPercentage">Success rate | 32.8%</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

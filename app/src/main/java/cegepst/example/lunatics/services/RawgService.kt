@@ -13,6 +13,7 @@ import retrofit2.http.Query
 private const val BASE_URL = "https://api.rawg.io/api/"
 private const val GAME_ENDPOINT = "games"
 private const val ACHIEVEMENT_ENDPOINT = "achievements"
+private const val SAME_GAMES_ENDPOINT = "game-series"
 
 interface RawgService {
 
@@ -36,6 +37,12 @@ interface RawgService {
         @Path("id") gameId: String,
         @Query("key") apikey: String
     ): Call<AchievementsResults>
+
+    @GET("$GAME_ENDPOINT/{id}/$SAME_GAMES_ENDPOINT")
+    fun getAllSameGames(
+        @Path("id") gameId: String,
+        @Query("key") apikey: String
+    ): Call<GameResult>
 
     companion object {
         const val API_KEY = "762f85b6be7c4c90ba98b1c82b67a075"
