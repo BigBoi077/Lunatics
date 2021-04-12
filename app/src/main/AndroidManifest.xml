@@ -13,7 +13,7 @@
         android:theme="@style/Theme.Lunatics">
         <activity android:name=".views.activities.SingleGameActivity" />
         <activity android:name=".views.activities.SameSeriesActivity" />
-        <activity android:name=".views.activities.GameTrophyActivity" />
+        <activity android:name=".views.activities.GameAchievementActivity" />
         <activity
             android:name=".views.activities.MainActivity"
             android:label="@string/app_name">

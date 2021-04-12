@@ -18,7 +18,7 @@ import cegepst.example.lunatics.R
 import cegepst.example.lunatics.models.baseModels.Game
 import cegepst.example.lunatics.models.baseModels.Platform
 import cegepst.example.lunatics.viewModels.SingleGameViewModel
-import cegepst.example.lunatics.views.activities.GameTrophyActivity
+import cegepst.example.lunatics.views.activities.GameAchievementActivity
 import cegepst.example.lunatics.views.activities.MainActivity
 import cegepst.example.lunatics.views.activities.SameSeriesActivity
 import cegepst.example.lunatics.views.adapters.PlatformAdapter
@@ -87,10 +87,10 @@ class SingleGameFragment : Fragment() {
         }
         view!!.findViewById<Button>(R.id.actionTrophies).setOnClickListener {
             changeActivity(
-                Intent(view?.context, GameTrophyActivity::class.java).putExtra(
-                    "gameId",
-                    game.id
-                )
+                    Intent(view?.context, GameAchievementActivity::class.java).putExtra(
+                            "gameId",
+                            game.id
+                    )
             )
         }
         view!!.findViewById<Button>(R.id.actionReturn).setOnClickListener {
