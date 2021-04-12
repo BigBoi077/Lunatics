@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import cegepst.example.lunatics.models.baseModels.Game
 import cegepst.example.lunatics.models.managers.ErrorManager
 import cegepst.example.lunatics.models.managers.LoadingManager
-import cegepst.example.lunatics.models.restults.GameResult
+import cegepst.example.lunatics.models.results.GameResult
 import cegepst.example.lunatics.services.RawgService
 import retrofit2.Call
 import retrofit2.Callback

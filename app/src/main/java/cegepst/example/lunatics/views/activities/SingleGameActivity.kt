@@ -1,4 +1,4 @@
-package cegepst.example.lunatics.views.activities
+    package cegepst.example.lunatics.views.activities
 
 import android.os.Bundle
 import android.view.MenuItem

@@ -4,12 +4,14 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="@color/Tundora"
+    android:layout_margin="16dp"
     android:padding="16dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
+        android:layout_marginTop="8dp"
         android:orientation="vertical">
 
         <ImageView
@@ -46,17 +48,20 @@
 
     </LinearLayout>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/JacksonPurple" />
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/gameRating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
+            android:layout_gravity="center"
             android:layout_margin="16dp"
             android:text="@string/default_rating"
             android:textAlignment="center"
@@ -66,7 +71,7 @@
             android:id="@+id/gameMetacriticRating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
+            android:layout_gravity="center"
             android:layout_margin="16dp"
             android:textAlignment="center"
             android:text="@string/default_metacritic_rating"
@@ -76,8 +81,9 @@
             android:id="@+id/actionGetSingleGame"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
+            android:layout_gravity="center"
             android:layout_weight="1"
+            android:layout_marginTop="4dp"
             android:background="@null"
             android:src="@drawable/ic_right_arrow" />
 
