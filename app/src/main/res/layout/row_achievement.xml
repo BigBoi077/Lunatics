@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="16dp"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:layout_weight="0.25"
+        android:src="@drawable/ic_image_gallery" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_margin="8dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:weightSum="3">
+
+        <TextView
+            android:id="@+id/achievementName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableLeft="@drawable/ic_celebration"
+            android:drawablePadding="8dp"
+            android:gravity="center"
+            android:text="@string/defaultAchievement"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/achievementDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableLeft="@drawable/ic_task"
+            android:drawablePadding="8dp"
+            android:gravity="center"
+            android:text="@string/defaultAchievementDescription"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/achievementSuccessPercentage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableLeft="@drawable/ic_person"
+            android:drawablePadding="8dp"
+            android:gravity="center"
+            android:text="@string/defaultAchievementPercentage"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+</LinearLayout>
