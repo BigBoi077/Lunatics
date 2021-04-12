@@ -13,8 +13,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-private const val API_KEY = "762f85b6be7c4c90ba98b1c82b67a075"
-
 class MainViewModel : ViewModel() {
 
     var wantedSize = 10
@@ -36,22 +34,23 @@ class MainViewModel : ViewModel() {
 
     fun fetchGames() {
         loadingManager.isLoading()
-        rawgService.getGames(API_KEY, wantedSize).enqueue(object : Callback<GameResult> {
-            override fun onResponse(call: Call<GameResult>, response: Response<GameResult>) {
-                if (games.value!!.isEmpty()) {
-                    games.value = response.body()!!.games
-                } else {
-                    makeTempList(games, response)
+        rawgService.getGames(RawgService.API_KEY, wantedSize)
+            .enqueue(object : Callback<GameResult> {
+                override fun onResponse(call: Call<GameResult>, response: Response<GameResult>) {
+                    if (games.value!!.isEmpty()) {
+                        games.value = response.body()!!.games
+                    } else {
+                        makeTempList(games, response)
+                    }
+                    loadingManager.isSuccess()
+                    wantedSize += 10
                 }
-                loadingManager.isSuccess()
-                wantedSize += 10
-            }
 
-            override fun onFailure(call: Call<GameResult>, t: Throwable) {
-                errorManager.raiseError(t.message ?: "Unrecognized error")
-                loadingManager.isError()
-            }
-        })
+                override fun onFailure(call: Call<GameResult>, t: Throwable) {
+                    errorManager.raiseError(t.message ?: "Unrecognized error")
+                    loadingManager.isError()
+                }
+            })
     }
 
     private fun makeTempList(data: MutableLiveData<List<Game>>, response: Response<GameResult>) {

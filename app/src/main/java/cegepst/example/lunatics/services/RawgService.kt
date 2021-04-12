@@ -27,15 +27,19 @@ interface RawgService {
 
     @GET("$GAME_ENDPOINT/{id}")
     fun getSingleGame(
+        @Query("key") apikey: String,
         @Path("id") gameId: String
     ): Call<Game>
 
     @GET("$GAME_ENDPOINT/{id}/$ACHIEVEMENT_ENDPOINT")
     fun getAchievements(
+        @Query("key") apikey: String,
         @Path("id") gameId: String
     ): Call<AchievementsResults>
 
     companion object {
+        const val API_KEY = "762f85b6be7c4c90ba98b1c82b67a075"
+
         fun create(): RawgService {
             val retrofit = Retrofit.Builder()
                 .addConverterFactory(
