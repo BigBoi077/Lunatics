@@ -1,4 +1,4 @@
-package cegepst.example.lunatics.models.restults
+package cegepst.example.lunatics.models.results
 
 import cegepst.example.lunatics.models.baseModels.Game
 import com.google.gson.annotations.SerializedName
