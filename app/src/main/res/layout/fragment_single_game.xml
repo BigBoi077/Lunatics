@@ -8,33 +8,42 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <ImageView
             android:id="@+id/gameImage"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="200dp"
             android:layout_gravity="center"
             android:layout_marginBottom="16dp"
             android:contentDescription="@string/game_image"
             android:src="@drawable/ic_image_gallery" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@color/JacksonPurple" />
-
-        <TextView
-            android:id="@+id/gameName"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="24dp"
-            android:text="@string/app_name"
-            android:drawablePadding="8dp"
-            android:textSize="16sp"
-            app:drawableStartCompat="@drawable/ic_controller" />
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="8dp"
+                android:text="@string/gameDescriptionTitle"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/gameDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="5"
+                android:padding="8dp"
+                android:text="@string/defaultGameDescription" />
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/gameRating"
@@ -54,39 +63,36 @@
             android:text="@string/default_website"
             android:textSize="16sp"
             android:drawablePadding="8dp"
-
             app:drawableLeftCompat="@drawable/ic_web_pack" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
             android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="400dp"
                 android:orientation="vertical"
                 android:layout_weight="1">
 
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:text="@string/listPlatforms"
-                    android:textSize="16sp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginBottom="8dp"
-                    android:background="@color/JacksonPurple" />
+                    android:layout_gravity="start"
+                    android:layout_marginLeft="8dp"
+                    android:textSize="20sp" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/listPlatforms"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="match_parent"
+                    android:layout_margin="8dp"
+                    android:layoutAnimation="@anim/layout_animation"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
             </LinearLayout>
 
@@ -99,35 +105,37 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:gravity="start"
                     android:text="@string/seeAlso"
-                    android:textSize="16sp" />
+                    android:textSize="20sp" />
 
-                <View
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:background="@color/JacksonPurple" />
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="8dp">
 
-                <Button
-                    android:id="@+id/actionSameLineup"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/JacksonPurple"
-                    android:drawableLeft="@drawable/ic_sword"
-                    android:drawableTint="@color/SoftPeach"
-                    android:text="@string/action_see_same_lineup"
-                    android:textColor="@color/SoftPeach" />
+                    <Button
+                        android:id="@+id/actionSameLineup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/JacksonPurple"
+                        android:drawableLeft="@drawable/ic_sword"
+                        android:drawableTint="@color/SoftPeach"
+                        android:text="@string/action_see_same_lineup"
+                        android:textColor="@color/SoftPeach" />
 
-                <Button
-                    android:id="@+id/actionTrophies"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/JacksonPurple"
-                    android:drawableLeft="@drawable/ic_sparkles"
-                    android:text="@string/action_trophy"
-                    android:textColor="@color/SoftPeach"
-                    android:textSize="12sp" />
+                    <Button
+                        android:id="@+id/actionTrophies"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/JacksonPurple"
+                        android:drawableLeft="@drawable/ic_sparkles"
+                        android:text="@string/action_trophy"
+                        android:textColor="@color/SoftPeach"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
 
             </LinearLayout>
 

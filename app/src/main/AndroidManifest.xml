@@ -15,9 +15,7 @@
         <activity android:name=".views.activities.SingleGameActivity" />
         <activity android:name=".views.activities.SameSeriesActivity" />
         <activity android:name=".views.activities.GameAchievementActivity" />
-        <activity
-            android:name=".views.activities.SplashScreenActivity"
-            android:label="@string/app_name">
+        <activity android:name=".views.activities.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

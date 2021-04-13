@@ -28,11 +28,11 @@ class GameAdapter(private val games: ArrayList<Game>) :
 
         @SuppressLint("SetTextI18n")
         fun setContent(game: Game) {
-            Glide.with(itemView).load(game.imageUrl).into(image)
+            Glide.with(itemView).load(game.imageUrl).centerCrop().into(image)
             name.text = game.name
             rating.text = "Rating | ${game.rating}"
             metacritic.text = "Metacritic | ${game.metacritic}"
-            released.text = "Released : ${game.released}"
+            released.text = game.released
             button.setOnClickListener {
                 val intent = Intent(itemView.context, SingleGameActivity::class.java)
                 intent.putExtra("gameId", game.id)

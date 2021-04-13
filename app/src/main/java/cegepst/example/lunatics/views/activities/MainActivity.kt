@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun initDrawerMenu() {
         drawerMenuManager = DrawerMenuManager(this, supportActionBar)
         drawerMenuManager.initDrawerMenu { drawer: ActionBarDrawerToggle -> setDrawerMenu(drawer) }
-        supportActionBar?.title = ""
+        supportActionBar?.title = "Popular games"
     }
 
     override fun initVariables() {

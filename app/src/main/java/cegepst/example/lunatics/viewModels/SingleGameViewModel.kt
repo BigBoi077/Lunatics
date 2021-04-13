@@ -37,6 +37,7 @@ class SingleGameViewModel : ViewModel() {
                     val game = Game(
                         gameId,
                         content!!.name,
+                        content.description,
                         content.imageUrl,
                         content.rating,
                         content.metacritic,

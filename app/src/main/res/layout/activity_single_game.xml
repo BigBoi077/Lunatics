@@ -6,9 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/drawer"
-    android:padding="16dp"
     android:background="@color/SoftPeach"
-    android:layoutAnimation="@anim/layout_animation"
     tools:context=".views.activities.SingleGameActivity">
 
     <com.google.android.material.navigation.NavigationView

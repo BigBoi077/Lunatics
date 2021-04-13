@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,15 +20,18 @@ import cegepst.example.lunatics.views.activities.GameAchievementActivity
 import cegepst.example.lunatics.views.activities.SameSeriesActivity
 import cegepst.example.lunatics.views.adapters.PlatformAdapter
 import com.bumptech.glide.Glide
-import com.google.gson.Gson
+
 
 private const val ARG_GAME_ID = "gameId"
+private const val MAX_LINES_COLLAPSED = 5
 
 class SingleGameFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
+    private lateinit var gameDescription: TextView
     private lateinit var adapter: PlatformAdapter
     private lateinit var game: Game
+    private var isCollapsed = true
     private var gameId: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,16 +59,25 @@ class SingleGameFragment : Fragment() {
         this.recyclerView = view!!.findViewById(R.id.listPlatforms)
         this.recyclerView.adapter = PlatformAdapter(game.platforms)
         this.recyclerView.layoutManager = LinearLayoutManager(view!!.context)
-
-        Log.d("PLATFORM", game.platforms.size.toString())
-        Log.d("GAME", Gson().toJson(game))
-
         this.adapter.notifyDataSetChanged()
-        Glide.with(view!!.context).load(game.imageUrl).into(view?.findViewById(R.id.gameImage)!!)
-        view!!.findViewById<TextView>(R.id.gameName).text = game.name
+        this.gameDescription = view?.findViewById(R.id.gameDescription)!!
+        Glide.with(view!!.context).load(game.imageUrl).centerCrop()
+            .into(view?.findViewById(R.id.gameImage)!!)
         view!!.findViewById<TextView>(R.id.gameRating).text = "Rating | ${game.rating}"
         view!!.findViewById<TextView>(R.id.gameWebsite).text = game.website
+        formatDescription(game.description)
         setOnClickEvents(game)
+    }
+
+    private fun formatDescription(description: String) {
+        val description = stripHtml(description)
+        val parts = description.split(".")
+        val output = parts[0] + parts[1] + parts[2] + "."
+        view!!.findViewById<TextView>(R.id.gameDescription).text = output
+    }
+
+    private fun stripHtml(html: String): String {
+        return Html.fromHtml(html, Html.FROM_HTML_MODE_LEGACY).toString()
     }
 
     private fun setOnClickEvents(game: Game) {
@@ -82,10 +94,10 @@ class SingleGameFragment : Fragment() {
         }
         view!!.findViewById<Button>(R.id.actionTrophies).setOnClickListener {
             changeActivity(
-                    Intent(view?.context, GameAchievementActivity::class.java).putExtra(
-                            "gameId",
-                            game.id
-                    )
+                Intent(view?.context, GameAchievementActivity::class.java).putExtra(
+                    "gameId",
+                    game.id
+                )
             )
         }
     }
