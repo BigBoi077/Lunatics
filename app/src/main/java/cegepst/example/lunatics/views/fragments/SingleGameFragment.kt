@@ -17,7 +17,6 @@ import cegepst.example.lunatics.R
 import cegepst.example.lunatics.models.baseModels.Game
 import cegepst.example.lunatics.models.baseModels.Platform
 import cegepst.example.lunatics.views.activities.GameAchievementActivity
-import cegepst.example.lunatics.views.activities.MainActivity
 import cegepst.example.lunatics.views.activities.SameSeriesActivity
 import cegepst.example.lunatics.views.adapters.PlatformAdapter
 import com.bumptech.glide.Glide
@@ -88,9 +87,6 @@ class SingleGameFragment : Fragment() {
                             game.id
                     )
             )
-        }
-        view!!.findViewById<Button>(R.id.actionReturn).setOnClickListener {
-            changeActivity(Intent(view?.context, MainActivity::class.java))
         }
     }
 

@@ -8,6 +8,7 @@
     android:id="@+id/drawer"
     android:padding="16dp"
     android:background="@color/SoftPeach"
+    android:layoutAnimation="@anim/layout_animation"
     tools:context=".views.activities.SingleGameActivity">
 
     <com.google.android.material.navigation.NavigationView
@@ -34,17 +35,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_lunatics_logo_full" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="@color/JacksonPurple" />
 
                 <TextView
                     android:id="@+id/errorBubble"

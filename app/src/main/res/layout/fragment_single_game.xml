@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layoutAnimation="@anim/layout_animation"
     tools:context=".views.activities.SingleGameActivity">
 
     <LinearLayout
@@ -114,35 +113,25 @@
                     android:id="@+id/actionSameLineup"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@color/Malachite"
+                    android:backgroundTint="@color/JacksonPurple"
                     android:drawableLeft="@drawable/ic_sword"
+                    android:drawableTint="@color/SoftPeach"
                     android:text="@string/action_see_same_lineup"
-                    android:textColor="@color/JacksonPurple" />
+                    android:textColor="@color/SoftPeach" />
 
                 <Button
                     android:id="@+id/actionTrophies"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@color/Malachite"
+                    android:backgroundTint="@color/JacksonPurple"
                     android:drawableLeft="@drawable/ic_sparkles"
                     android:text="@string/action_trophy"
-                    android:textColor="@color/JacksonPurple"
+                    android:textColor="@color/SoftPeach"
                     android:textSize="12sp" />
 
             </LinearLayout>
 
         </LinearLayout>
-
-        <Button
-            android:id="@+id/actionReturn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="16dp"
-            android:backgroundTint="@color/SoftPink"
-            android:drawableLeft="@drawable/ic_return"
-            android:text="@string/action_return"
-            android:textColor="@color/Cinnabar" />
 
     </LinearLayout>
 
