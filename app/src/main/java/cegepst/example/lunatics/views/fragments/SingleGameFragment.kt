@@ -21,12 +21,11 @@ import cegepst.example.lunatics.views.activities.SameSeriesActivity
 import cegepst.example.lunatics.views.adapters.PlatformAdapter
 import com.bumptech.glide.Glide
 
-
 private const val ARG_GAME_ID = "gameId"
-private const val MAX_LINES_COLLAPSED = 5
 
 class SingleGameFragment : Fragment() {
 
+    private var actionBar: androidx.appcompat.app.ActionBar? = null
     private lateinit var recyclerView: RecyclerView
     private lateinit var gameDescription: TextView
     private lateinit var adapter: PlatformAdapter
@@ -61,12 +60,16 @@ class SingleGameFragment : Fragment() {
         this.recyclerView.layoutManager = LinearLayoutManager(view!!.context)
         this.adapter.notifyDataSetChanged()
         this.gameDescription = view?.findViewById(R.id.gameDescription)!!
-        Glide.with(view!!.context).load(game.imageUrl).centerCrop()
-            .into(view?.findViewById(R.id.gameImage)!!)
+        setImage(game)
         view!!.findViewById<TextView>(R.id.gameRating).text = "Rating | ${game.rating}"
         view!!.findViewById<TextView>(R.id.gameWebsite).text = game.website
         formatDescription(game.description)
         setOnClickEvents(game)
+    }
+
+    private fun setImage(game: Game) {
+        Glide.with(view!!.context).load(game.imageUrl).centerCrop()
+            .into(view?.findViewById(R.id.gameImage)!!)
     }
 
     private fun formatDescription(description: String) {

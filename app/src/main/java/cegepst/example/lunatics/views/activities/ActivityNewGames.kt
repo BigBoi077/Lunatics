@@ -10,60 +10,33 @@ import cegepst.example.lunatics.R
 import cegepst.example.lunatics.models.baseModels.Game
 import cegepst.example.lunatics.models.interfaces.BaseActivity
 import cegepst.example.lunatics.models.managers.DrawerMenuManager
-import cegepst.example.lunatics.viewModels.MainViewModel
+import cegepst.example.lunatics.viewModels.NewGamesViewModel
 import cegepst.example.lunatics.views.adapters.GameAdapter
 import cegepst.example.lunatics.views.fragments.GameFragment
 import com.google.android.material.navigation.NavigationView
 
-const val MAX_GAMES = 50
+private const val TITLE = "New games"
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
+class ActivityNewGames : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
     BaseActivity {
 
     private lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
     private lateinit var drawerMenuManager: DrawerMenuManager
-    private lateinit var viewModel: MainViewModel
+    private lateinit var viewModel: NewGamesViewModel
     private lateinit var adapter: GameAdapter
     private var games = ArrayList<Game>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        initDrawerMenu()
-        initVariables()
-        initFragment()
-        loadContent()
     }
 
-    override fun initDrawerMenu() {
-        drawerMenuManager = DrawerMenuManager(this, supportActionBar)
-        drawerMenuManager.initDrawerMenu { drawer: ActionBarDrawerToggle -> setDrawerMenu(drawer) }
-        supportActionBar?.title = "Popular games"
+    private fun setDrawerMenu(element: ActionBarDrawerToggle) {
+        actionBarDrawerToggle = element
     }
 
-    override fun initVariables() {
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        viewModel.giveComponents(findViewById(R.id.errorBubble))
-        adapter = GameAdapter(games)
-    }
-
-    override fun initFragment() {
-        val lambda = { actionLoad() }
-        supportFragmentManager.beginTransaction()
-            .add(
-                    R.id.gameContainer,
-                    GameFragment.newInstance(adapter, lambda)
-            )
-            .commit()
-    }
-
-    override fun loadContent() {
-        viewModel.fetchGames()
-        viewModel.getGames().observe(this, {
-            games.clear()
-            games.addAll(it)
-            adapter.notifyDataSetChanged()
-        })
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        return drawerMenuManager.handleChosenAction(item)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -73,17 +46,39 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         return super.onOptionsItemSelected(item)
     }
 
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        return drawerMenuManager.handleChosenAction(item)
+    override fun initDrawerMenu() {
+        drawerMenuManager = DrawerMenuManager(this, supportActionBar)
+        drawerMenuManager.initDrawerMenu { drawer: ActionBarDrawerToggle -> setDrawerMenu(drawer) }
+        supportActionBar?.title = TITLE
     }
 
-    private fun setDrawerMenu(element: ActionBarDrawerToggle) {
-        actionBarDrawerToggle = element
+    override fun initVariables() {
+        viewModel = ViewModelProvider(this).get(NewGamesViewModel::class.java)
+        adapter = GameAdapter(games)
+    }
+
+    override fun initFragment() {
+        val lambda = { actionLoad() }
+        supportFragmentManager.beginTransaction()
+            .add(
+                R.id.gameContainer,
+                GameFragment.newInstance(adapter, lambda)
+            )
+            .commit()
+    }
+
+    override fun loadContent() {
+        viewModel.fetchNewGames()
+        viewModel.getGames().observe(this, {
+            games.clear()
+            games.addAll(it)
+            adapter.notifyDataSetChanged()
+        })
     }
 
     fun actionLoad() {
         if (canLoadMoreGames()) {
-            viewModel.fetchGames()
+            viewModel.fetchNewGames()
         } else {
             alert(resources.getString(R.string.noMoreGames))
         }

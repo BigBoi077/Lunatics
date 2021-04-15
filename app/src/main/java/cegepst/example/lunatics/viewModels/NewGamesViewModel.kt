@@ -1,11 +1,11 @@
 package cegepst.example.lunatics.viewModels
 
-import android.widget.TextView
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import cegepst.example.lunatics.models.baseModels.Game
 import cegepst.example.lunatics.models.helpers.DateFormatter
+import cegepst.example.lunatics.models.interfaces.Client
 import cegepst.example.lunatics.models.managers.ErrorManager
 import cegepst.example.lunatics.models.managers.LoadingManager
 import cegepst.example.lunatics.models.results.GameResult
@@ -14,10 +14,9 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-const val WANTED_SIZE = 10
-const val DATE_PATTERN = "yyyy-MM-dd"
+private const val ORDERING = "released"
 
-class MainViewModel : ViewModel() {
+class NewGamesViewModel : ViewModel(), Client {
 
     private val loadingManager = LoadingManager()
     private val errorManager = ErrorManager()
@@ -32,34 +31,31 @@ class MainViewModel : ViewModel() {
         return games
     }
 
-    fun giveComponents(textView: TextView) {
-        errorManager.setComponents(textView)
-    }
-
-    fun fetchGames() {
+    fun fetchNewGames() {
         loadingManager.isLoading()
-        rawgService.getGames(
+        rawgService.getNewGames(
             RawgService.API_KEY,
             WANTED_SIZE,
             page,
-            DateFormatter.getYearAgo(DATE_PATTERN)
+            DateFormatter.getMontAgo(DATE_PATTERN),
+            ORDERING
         )
-                .enqueue(object : Callback<GameResult> {
-                    override fun onResponse(call: Call<GameResult>, response: Response<GameResult>) {
-                        if (games.value!!.isEmpty()) {
-                            games.value = response.body()!!.games
-                        } else {
-                            makeTempList(games, response)
-                        }
-                        loadingManager.isSuccess()
-                        page++
+            .enqueue(object : Callback<GameResult> {
+                override fun onResponse(call: Call<GameResult>, response: Response<GameResult>) {
+                    if (games.value!!.isEmpty()) {
+                        games.value = response.body()!!.games
+                    } else {
+                        makeTempList(games, response)
                     }
+                    loadingManager.isSuccess()
+                    page++
+                }
 
-                    override fun onFailure(call: Call<GameResult>, t: Throwable) {
-                        errorManager.raiseError(t.message ?: "Unrecognized error")
-                        loadingManager.isError()
-                    }
-                })
+                override fun onFailure(call: Call<GameResult>, t: Throwable) {
+                    errorManager.raiseError(t.message ?: "Unrecognized error")
+                    loadingManager.isError()
+                }
+            })
     }
 
     private fun makeTempList(data: MutableLiveData<List<Game>>, response: Response<GameResult>) {
