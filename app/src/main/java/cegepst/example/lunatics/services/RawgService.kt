@@ -22,8 +22,10 @@ interface RawgService {
 
     @GET(GAME_ENDPOINT)
     fun getGames(
-        @Query("key") apikey: String,
-        @Query("page_size") size: Int
+            @Query("key") key: String,
+            @Query("page_size") size: Int,
+            @Query("page") page: Int,
+            @Query("dates") date: String
     ): Call<GameResult>
 
     @GET("$GAME_ENDPOINT/{id}")

@@ -4,8 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AnimationUtils
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -15,21 +13,16 @@ import cegepst.example.lunatics.R
 import cegepst.example.lunatics.viewModels.MainViewModel
 import cegepst.example.lunatics.views.adapters.GameAdapter
 
-private const val ARG_PROMPT_WELCOME = "prompt"
-
 class GameFragment : Fragment() {
 
+    private lateinit var lambda: () -> Unit
     private lateinit var viewModel: MainViewModel
     private lateinit var recyclerView: RecyclerView
-    private lateinit var header: LinearLayout
     lateinit var adapter: GameAdapter
     private var welcome: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            welcome = it.getString(ARG_PROMPT_WELCOME)
-        }
         viewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
     }
 
@@ -51,16 +44,10 @@ class GameFragment : Fragment() {
 
     private fun setScrollListener() {
         this.recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
-                val animation = AnimationUtils.loadAnimation(view?.context, R.anim.item_animation_fall_up)
-                if (LinearLayoutManager(view?.context).findFirstVisibleItemPosition() > 0) {
-                    header.visibility = View.GONE
-                    header.visibility = View.GONE
-                    header.startAnimation(animation)
-                } else {
-                    header.visibility = View.VISIBLE
-                    header.visibility = View.VISIBLE
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+                if (!recyclerView.canScrollVertically(1)) {
+                    lambda()
                 }
             }
         })
@@ -68,13 +55,10 @@ class GameFragment : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance(welcome: String, adapter: GameAdapter, header: LinearLayout) =
+        fun newInstance(adapter: GameAdapter, lambda: () -> Unit) =
                 GameFragment().apply {
-                    arguments = Bundle().apply {
-                        putString(ARG_PROMPT_WELCOME, welcome)
-                    }
                     this.adapter = adapter
-                    this.header = header
+                    this.lambda = lambda
                 }
     }
 }
