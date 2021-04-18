@@ -23,11 +23,9 @@
     <string name="title_activity_same_series">SameSeriesActivity</string>
     <string name="listPlatforms">Available on</string>
     <string name="seeAlso">See also</string>
-    <string name="defaultAchievement">Reach for the stars</string>
+    <string name="default_achievement">Reach for the stars</string>
     <string name="defaultAchievementDescription">Get 150 stars in every world</string>
     <string name="defaultAchievementPercentage">Success rate | 32.8%</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="gameDescriptionTitle">Description</string>
     <string name="defaultGameDescription">Lorem ipsum</string>
     <string name="title_activity_t_e_s_t">TEST</string>
@@ -37,8 +35,12 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
-
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+    <string name="default_platform_dates">Released in 2002</string>
+    <string name="default_game_count">5649 games</string>
+    <string name="noMorePlatforms">The load limit for platforms is 50 :(</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

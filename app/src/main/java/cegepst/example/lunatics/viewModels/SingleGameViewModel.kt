@@ -30,17 +30,18 @@ class SingleGameViewModel : ViewModel() {
                     override fun onResponse(call: Call<Game>, response: Response<Game>) {
                         val content = response.body()
                         val game = Game(
-                                gameId,
-                                content!!.name,
-                                content.description,
-                                content.imageUrl,
-                                content.rating,
-                                content.metacritic,
-                                content.released,
-                                content.website,
-                                content.platforms
+                            gameId,
+                            content!!.name,
+                            content.description,
+                            content.imageUrl,
+                            content.rating,
+                            content.metacritic,
+                            content.released,
+                            content.website,
+                            content.platformParents
                         )
-                        val callback = { gameList: ArrayList<Game> -> callback(gameList, game, lambda) }
+                        val callback =
+                            { gameList: ArrayList<Game> -> callback(gameList, game, lambda) }
                         viewModel.fetchSameSeriesGame(gameId, callback)
                     }
 

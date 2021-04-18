@@ -11,5 +11,5 @@ class Game(
         @SerializedName("metacritic") val metacritic: String,
         @SerializedName("released") val released: String,
         @SerializedName("website") val website: String,
-        @SerializedName("platforms") val platforms: List<Platform>
+        @SerializedName("platforms") val platformParents: List<PlatformParent>
 )

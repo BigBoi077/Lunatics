@@ -48,7 +48,7 @@
                 android:layout_weight="1"
                 android:drawablePadding="16dp"
                 android:gravity="center"
-                android:text="@string/defaultAchievement"
+                android:text="@string/default_achievement"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 

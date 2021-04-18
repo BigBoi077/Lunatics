@@ -61,7 +61,7 @@ class GamesToComeActivity : AppCompatActivity(), NavigationView.OnNavigationItem
         val lambda = { actionLoad() }
         supportFragmentManager.beginTransaction()
             .add(
-                R.id.gameContainer,
+                R.id.fragmentContainer,
                 GameFragment.newInstance(adapter, lambda)
             )
             .commit()

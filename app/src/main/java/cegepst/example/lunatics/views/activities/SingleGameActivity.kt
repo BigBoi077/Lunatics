@@ -8,12 +8,12 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProvider
 import cegepst.example.lunatics.R
 import cegepst.example.lunatics.models.baseModels.Game
-import cegepst.example.lunatics.models.baseModels.Platform
+import cegepst.example.lunatics.models.baseModels.PlatformParent
 import cegepst.example.lunatics.models.interfaces.BaseActivity
 import cegepst.example.lunatics.models.managers.DrawerMenuManager
 import cegepst.example.lunatics.viewModels.SameSeriesViewModel
 import cegepst.example.lunatics.viewModels.SingleGameViewModel
-import cegepst.example.lunatics.views.adapters.PlatformAdapter
+import cegepst.example.lunatics.views.adapters.SimplePlatformAdapter
 import cegepst.example.lunatics.views.fragments.SingleGameFragment
 import com.google.android.material.navigation.NavigationView
 
@@ -22,9 +22,9 @@ import com.google.android.material.navigation.NavigationView
 
         private lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
         private lateinit var menu: NavigationView
-        private lateinit var adapter: PlatformAdapter
+        private lateinit var adapterSimple: SimplePlatformAdapter
         private lateinit var viewModel: SingleGameViewModel
-        private var platforms = ArrayList<Platform>()
+        private var platforms = ArrayList<PlatformParent>()
 
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
@@ -53,7 +53,7 @@ import com.google.android.material.navigation.NavigationView
     override fun initVariables() {
         viewModel = ViewModelProvider(this).get(SingleGameViewModel::class.java)
         viewModel.giveComponents(findViewById(R.id.errorBubble))
-        adapter = PlatformAdapter(platforms)
+        adapterSimple = SimplePlatformAdapter(platforms)
     }
 
     override fun initFragment() {

@@ -3,6 +3,7 @@ package cegepst.example.lunatics.services
 import cegepst.example.lunatics.models.baseModels.Game
 import cegepst.example.lunatics.models.results.AchievementsResults
 import cegepst.example.lunatics.models.results.GameResult
+import cegepst.example.lunatics.models.results.PlatformResult
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -14,11 +15,9 @@ private const val BASE_URL = "https://api.rawg.io/api/"
 private const val GAME_ENDPOINT = "games"
 private const val ACHIEVEMENT_ENDPOINT = "achievements"
 private const val SAME_GAMES_ENDPOINT = "game-series"
+private const val PLATFORM_ENDPOINT = "platforms"
 
 interface RawgService {
-
-    val next: String
-        get() = ""
 
     @GET(GAME_ENDPOINT)
     fun getGames(
@@ -54,6 +53,21 @@ interface RawgService {
         @Path("id") gameId: String,
         @Query("key") apikey: String
     ): Call<GameResult>
+
+    @GET(GAME_ENDPOINT)
+    fun getGamesByPlatform(
+        @Query("platforms") platformId: String,
+        @Query("page_size") wantedSize: Int,
+        @Query("page") page: Int
+    ): Call<GameResult>
+
+    @GET(PLATFORM_ENDPOINT)
+    fun getPlatforms(
+        @Query("key") apiKey: String,
+        @Query("page_size") wantedSize: Int,
+        @Query("page") page: Int
+    ): Call<PlatformResult>
+
 
     companion object {
         const val API_KEY = "762f85b6be7c4c90ba98b1c82b67a075"

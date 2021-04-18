@@ -16,10 +16,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import cegepst.example.lunatics.R
 import cegepst.example.lunatics.models.baseModels.Game
-import cegepst.example.lunatics.models.baseModels.Platform
+import cegepst.example.lunatics.models.baseModels.PlatformParent
 import cegepst.example.lunatics.views.activities.GameAchievementActivity
 import cegepst.example.lunatics.views.activities.SameSeriesActivity
-import cegepst.example.lunatics.views.adapters.PlatformAdapter
+import cegepst.example.lunatics.views.adapters.SimplePlatformAdapter
 import com.bumptech.glide.Glide
 
 private const val ARG_GAME_ID = "gameId"
@@ -29,7 +29,7 @@ class SingleGameFragment : Fragment() {
     private var actionBar: androidx.appcompat.app.ActionBar? = null
     private lateinit var recyclerView: RecyclerView
     private lateinit var gameDescription: TextView
-    private lateinit var adapter: PlatformAdapter
+    private lateinit var adapterSimple: SimplePlatformAdapter
     private lateinit var game: Game
     private var length = 0
     private var gameId: Int? = null
@@ -55,11 +55,12 @@ class SingleGameFragment : Fragment() {
 
     @SuppressLint("SetTextI18n")
     fun setContent(game: Game) {
-        this.adapter = PlatformAdapter(game.platforms as ArrayList<Platform>)
+        this.adapterSimple =
+            SimplePlatformAdapter(game.platformParents as ArrayList<PlatformParent>)
         this.recyclerView = view!!.findViewById(R.id.listPlatforms)
-        this.recyclerView.adapter = PlatformAdapter(game.platforms)
+        this.recyclerView.adapter = SimplePlatformAdapter(game.platformParents)
         this.recyclerView.layoutManager = LinearLayoutManager(view!!.context)
-        this.adapter.notifyDataSetChanged()
+        this.adapterSimple.notifyDataSetChanged()
         this.gameDescription = view?.findViewById(R.id.gameDescription)!!
         setImage(game)
         setSameSeriesButton()

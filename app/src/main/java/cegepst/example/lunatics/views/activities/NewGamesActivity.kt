@@ -18,7 +18,7 @@ import com.google.android.material.navigation.NavigationView
 
 private const val TITLE = "New games"
 
-class ActivityNewGames : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
+class NewGamesActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
     BaseActivity {
 
     private lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
@@ -60,7 +60,7 @@ class ActivityNewGames : AppCompatActivity(), NavigationView.OnNavigationItemSel
         val lambda = { actionLoad() }
         supportFragmentManager.beginTransaction()
             .add(
-                R.id.gameContainer,
+                R.id.fragmentContainer,
                 GameFragment.newInstance(adapter, lambda)
             )
             .commit()

@@ -8,25 +8,25 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProvider
 import cegepst.example.lunatics.R
-import cegepst.example.lunatics.models.baseModels.Game
+import cegepst.example.lunatics.models.baseModels.Platform
 import cegepst.example.lunatics.models.interfaces.BaseActivity
 import cegepst.example.lunatics.models.managers.DrawerMenuManager
-import cegepst.example.lunatics.viewModels.MainViewModel
-import cegepst.example.lunatics.views.adapters.GameAdapter
-import cegepst.example.lunatics.views.fragments.GameFragment
+import cegepst.example.lunatics.viewModels.PlatformViewModel
+import cegepst.example.lunatics.views.adapters.PlatformAdapter
+import cegepst.example.lunatics.views.fragments.PlatformFragment
 import com.google.android.material.navigation.NavigationView
 
-const val MAX_GAMES = 50
-private const val TITLE = "Popular games"
+private const val TITLE = "Platforms"
+private const val MAX_PLATFORMS = 50
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
+class PlatformsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
     BaseActivity {
 
     private lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
     private lateinit var menu: NavigationView
-    private lateinit var viewModel: MainViewModel
-    private lateinit var adapter: GameAdapter
-    private var games = ArrayList<Game>()
+    private lateinit var viewModel: PlatformViewModel
+    private lateinit var adapter: PlatformAdapter
+    private var platforms = ArrayList<Platform>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +39,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun initDrawerMenu() {
         val drawerLayout = findViewById<DrawerLayout>(R.id.drawer)
-        actionBarDrawerToggle = ActionBarDrawerToggle(this, drawerLayout, R.string.actionOpen, R.string.actionClose)
+        actionBarDrawerToggle =
+            ActionBarDrawerToggle(this, drawerLayout, R.string.actionOpen, R.string.actionClose)
         drawerLayout.addDrawerListener(actionBarDrawerToggle)
         actionBarDrawerToggle.syncState()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -52,9 +53,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun initVariables() {
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(PlatformViewModel::class.java)
         viewModel.giveComponents(findViewById(R.id.errorBubble))
-        adapter = GameAdapter(games)
+        adapter = PlatformAdapter(platforms)
     }
 
     override fun initFragment() {
@@ -62,25 +63,25 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         supportFragmentManager.beginTransaction()
             .add(
                 R.id.fragmentContainer,
-                GameFragment.newInstance(adapter, lambda)
+                PlatformFragment.newInstance(adapter, lambda)
             )
             .commit()
     }
 
     override fun loadContent() {
-        viewModel.fetchGames()
-        viewModel.getGames().observe(this, {
-            games.clear()
-            games.addAll(it)
+        viewModel.fetchPlatforms()
+        viewModel.getPlatforms().observe(this, {
+            platforms.clear()
+            platforms.addAll(it)
             adapter.notifyDataSetChanged()
         })
     }
 
     private fun actionLoad() {
-        if (canLoadMoreGames()) {
-            viewModel.fetchGames()
+        if (canLoadMorePlatforms()) {
+            viewModel.fetchPlatforms()
         } else {
-            alert(resources.getString(R.string.noMoreGames))
+            alert(resources.getString(R.string.noMorePlatforms))
         }
     }
 
@@ -88,8 +89,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
-    private fun canLoadMoreGames(): Boolean {
-        return games.size < MAX_GAMES
+    private fun canLoadMorePlatforms(): Boolean {
+        return platforms.size < MAX_PLATFORMS
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

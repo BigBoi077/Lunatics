@@ -68,7 +68,7 @@ class SameSeriesActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
     private fun loadFragment(games: ArrayList<Game>) {
         supportFragmentManager.beginTransaction()
             .add(
-                R.id.gameContainer,
+                R.id.fragmentContainer,
                 SameSeriesFragment.newInstance(games)
             )
             .commit()
