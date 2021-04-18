@@ -26,12 +26,12 @@ class SameSeriesFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_same_series, container, false)
+        return inflater.inflate(R.layout.base_fragment, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        this.recyclerView = view.findViewById(R.id.listSameSeries)!!
+        this.recyclerView = view.findViewById(R.id.list)!!
         this.recyclerView.adapter = adapter
         this.recyclerView.layoutManager = LinearLayoutManager(view.context)
     }

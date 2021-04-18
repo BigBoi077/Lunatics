@@ -56,6 +56,7 @@ interface RawgService {
 
     @GET(GAME_ENDPOINT)
     fun getGamesByPlatform(
+        @Query("key") apikey: String,
         @Query("platforms") platformId: String,
         @Query("page_size") wantedSize: Int,
         @Query("page") page: Int

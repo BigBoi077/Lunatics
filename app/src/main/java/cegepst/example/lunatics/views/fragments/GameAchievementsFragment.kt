@@ -31,13 +31,13 @@ class GameAchievementsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_game_achievements, container, false)
+        return inflater.inflate(R.layout.base_fragment, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         this.adapter = AchievementAdapter(achievements)
-        this.recyclerView = view.findViewById(R.id.listAchievements)
+        this.recyclerView = view.findViewById(R.id.list)
         this.recyclerView.adapter = adapter
         this.recyclerView.layoutManager = LinearLayoutManager(view.context)
         this.adapter.notifyDataSetChanged()
