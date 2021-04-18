@@ -1,15 +1,16 @@
 package cegepst.example.lunatics.views.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProvider
 import cegepst.example.lunatics.R
 import cegepst.example.lunatics.models.baseModels.Game
 import cegepst.example.lunatics.models.interfaces.BaseActivity
-import cegepst.example.lunatics.models.managers.DrawerMenuManager
 import cegepst.example.lunatics.viewModels.NewGamesViewModel
 import cegepst.example.lunatics.views.adapters.GameAdapter
 import cegepst.example.lunatics.views.fragments.GameFragment
@@ -21,7 +22,7 @@ class ActivityNewGames : AppCompatActivity(), NavigationView.OnNavigationItemSel
     BaseActivity {
 
     private lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
-    private lateinit var drawerMenuManager: DrawerMenuManager
+    private lateinit var menu: NavigationView
     private lateinit var viewModel: NewGamesViewModel
     private lateinit var adapter: GameAdapter
     private var games = ArrayList<Game>()
@@ -36,7 +37,7 @@ class ActivityNewGames : AppCompatActivity(), NavigationView.OnNavigationItemSel
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        return drawerMenuManager.handleChosenAction(item)
+        return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -47,8 +48,38 @@ class ActivityNewGames : AppCompatActivity(), NavigationView.OnNavigationItemSel
     }
 
     override fun initDrawerMenu() {
-        drawerMenuManager = DrawerMenuManager(this, supportActionBar)
-        drawerMenuManager.initDrawerMenu { drawer: ActionBarDrawerToggle -> setDrawerMenu(drawer) }
+        val drawerLayout = findViewById<DrawerLayout>(R.id.drawer)
+        actionBarDrawerToggle =
+            ActionBarDrawerToggle(this, drawerLayout, R.string.actionOpen, R.string.actionClose)
+        drawerLayout.addDrawerListener(actionBarDrawerToggle)
+        actionBarDrawerToggle.syncState()
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        menu = findViewById(R.id.drawerMenu)
+        menu.setNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.popularGame -> {
+                    val intent = Intent(Intent(this, MainActivity::class.java))
+                    startActivity(intent)
+                }
+                R.id.newGames -> {
+                    val intent = Intent(Intent(this, ActivityNewGames::class.java))
+                    startActivity(intent)
+                }
+                R.id.gamesToCome -> {
+                    val intent = Intent(Intent(this, ActivityNewGames::class.java))
+                    startActivity(intent)
+                }
+                R.id.listPlatforms -> {
+                    val intent = Intent(Intent(this, ActivityNewGames::class.java))
+                    startActivity(intent)
+                }
+                R.id.gameGenres -> {
+                    val intent = Intent(Intent(this, ActivityNewGames::class.java))
+                    startActivity(intent)
+                }
+            }
+            true
+        }
         supportActionBar?.title = TITLE
     }
 
@@ -76,7 +107,7 @@ class ActivityNewGames : AppCompatActivity(), NavigationView.OnNavigationItemSel
         })
     }
 
-    fun actionLoad() {
+    private fun actionLoad() {
         if (canLoadMoreGames()) {
             viewModel.fetchNewGames()
         } else {

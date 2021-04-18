@@ -9,15 +9,6 @@
     android:id="@+id/drawer"
     tools:context=".views.activities.MainActivity">
 
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/drawerMenu"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        app:itemIconTint="@color/JacksonPurple"
-        app:itemTextColor="@color/JacksonPurple"
-        app:menu="@menu/drawer" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -57,5 +48,14 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/drawerMenu"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:itemIconTint="@color/JacksonPurple"
+        app:itemTextColor="@color/JacksonPurple"
+        app:menu="@menu/drawer" />
 
 </androidx.drawerlayout.widget.DrawerLayout>
