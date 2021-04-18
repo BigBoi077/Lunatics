@@ -23,7 +23,7 @@ class AchievementAdapter(private val achievements: List<Achievement>) :
 
         @SuppressLint("SetTextI18n")
         fun setContent(achievement: Achievement) {
-            Glide.with(itemView).load(achievement.imageUrl).centerCrop().into(image)
+            Glide.with(itemView).load(achievement.imageUrl).override(500, 500).centerCrop().into(image)
             name.text = achievement.name
             description.text = achievement.description
             percentage.text = "${achievement.successPercentage}%"

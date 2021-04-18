@@ -22,6 +22,7 @@ class MainViewModel : ViewModel() {
     private val loadingManager = LoadingManager()
     private val errorManager = ErrorManager()
     val games = MutableLiveData(listOf<Game>())
+    var wantedSize = 10
     var page: Int = 1
 
     private val rawgService by lazy {
@@ -39,10 +40,10 @@ class MainViewModel : ViewModel() {
     fun fetchGames() {
         loadingManager.isLoading()
         rawgService.getGames(
-            RawgService.API_KEY,
-            WANTED_SIZE,
-            page,
-            DateFormatter.getYearAgo(DATE_PATTERN)
+                RawgService.API_KEY,
+                wantedSize,
+                page,
+                DateFormatter.getYearAgo(DATE_PATTERN)
         )
                 .enqueue(object : Callback<GameResult> {
                     override fun onResponse(call: Call<GameResult>, response: Response<GameResult>) {
@@ -52,6 +53,7 @@ class MainViewModel : ViewModel() {
                             makeTempList(games, response)
                         }
                         loadingManager.isSuccess()
+                        wantedSize += 10
                         page++
                     }
 
