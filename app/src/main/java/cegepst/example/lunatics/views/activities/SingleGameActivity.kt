@@ -17,17 +17,17 @@ import cegepst.example.lunatics.views.adapters.SimplePlatformAdapter
 import cegepst.example.lunatics.views.fragments.SingleGameFragment
 import com.google.android.material.navigation.NavigationView
 
-    class SingleGameActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
-        BaseActivity {
+class SingleGameActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
+    BaseActivity {
 
-        private lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
-        private lateinit var menu: NavigationView
-        private lateinit var adapterSimple: SimplePlatformAdapter
-        private lateinit var viewModel: SingleGameViewModel
-        private var platforms = ArrayList<PlatformParent>()
+    private lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
+    private lateinit var menu: NavigationView
+    private lateinit var adapterSimple: SimplePlatformAdapter
+    private lateinit var viewModel: SingleGameViewModel
+    private var platforms = ArrayList<PlatformParent>()
 
-        override fun onCreate(savedInstanceState: Bundle?) {
-            super.onCreate(savedInstanceState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_single_game)
         initDrawerMenu()
         initVariables()
