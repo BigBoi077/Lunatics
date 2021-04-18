@@ -2,7 +2,6 @@ package cegepst.example.lunatics.views.activities
 
 import android.os.Bundle
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
@@ -78,19 +77,7 @@ class PlatformsActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
     }
 
     private fun actionLoad() {
-        if (canLoadMorePlatforms()) {
-            viewModel.fetchPlatforms()
-        } else {
-            alert(resources.getString(R.string.noMorePlatforms))
-        }
-    }
-
-    private fun alert(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-    }
-
-    private fun canLoadMorePlatforms(): Boolean {
-        return platforms.size < MAX_PLATFORMS
+        viewModel.fetchPlatforms()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

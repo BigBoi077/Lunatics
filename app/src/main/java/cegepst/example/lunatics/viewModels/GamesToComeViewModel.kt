@@ -1,6 +1,5 @@
 package cegepst.example.lunatics.viewModels
 
-import android.util.Log
 import android.widget.TextView
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -15,12 +14,13 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+private const val PAGE_SIZE = 10
+
 class GamesToComeViewModel : ViewModel() {
 
     private val loadingManager = LoadingManager()
     private val errorManager = ErrorManager()
     val games = MutableLiveData(listOf<Game>())
-    var wantedSize = 10
     var page: Int = 1
 
     private val rawgService by lazy {
@@ -39,20 +39,18 @@ class GamesToComeViewModel : ViewModel() {
         loadingManager.isLoading()
         rawgService.getGames(
             RawgService.API_KEY,
-            wantedSize,
+            PAGE_SIZE,
             page,
             DateFormatter.getNextYear(DATE_PATTERN)
         )
             .enqueue(object : Callback<GameResult> {
                 override fun onResponse(call: Call<GameResult>, response: Response<GameResult>) {
-                    Log.d("CALL", response.raw().toString())
                     if (games.value!!.isEmpty()) {
                         games.value = response.body()!!.games
                     } else {
                         makeTempList(games, response)
                     }
                     loadingManager.isSuccess()
-                    wantedSize += 10
                     page++
                 }
 

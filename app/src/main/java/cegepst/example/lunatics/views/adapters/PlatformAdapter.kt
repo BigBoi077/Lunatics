@@ -20,6 +20,7 @@ class PlatformAdapter(private val platforms: ArrayList<Platform>) :
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val image: ImageView = itemView.findViewById(R.id.platformImage)
         private val name: TextView = itemView.findViewById(R.id.platformName)
+        private val released: TextView = itemView.findViewById(R.id.platformReleased)
         private val gameCount: TextView = itemView.findViewById(R.id.platformGameCount)
         private val button: ImageButton = itemView.findViewById(R.id.actionGetGamesByPlatform)
 
@@ -27,7 +28,8 @@ class PlatformAdapter(private val platforms: ArrayList<Platform>) :
         fun setContent(platform: Platform) {
             Glide.with(itemView).load(platform.backgroundImage).centerCrop().into(image)
             name.text = platform.name
-            gameCount.text = "Released in ${platform.yearStart}"
+            released.text = "Released in ${platform.yearStart}"
+            gameCount.text = "${platform.gameCount} games"
             button.setOnClickListener {
                 val intent = Intent(itemView.context, GamesByPlatformActivity::class.java)
                 intent.putExtra("platformId", platform.id)

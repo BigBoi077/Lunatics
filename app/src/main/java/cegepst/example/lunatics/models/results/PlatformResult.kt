@@ -4,5 +4,6 @@ import cegepst.example.lunatics.models.baseModels.Platform
 import com.google.gson.annotations.SerializedName
 
 class PlatformResult(
-    @SerializedName("results") val platforms: List<Platform>
+    @SerializedName("results") val platforms: List<Platform>,
+    @SerializedName("next") val next: String
 )

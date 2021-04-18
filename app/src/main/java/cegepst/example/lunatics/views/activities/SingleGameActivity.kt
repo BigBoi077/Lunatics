@@ -28,7 +28,7 @@ class SingleGameActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_single_game)
+        setContentView(R.layout.activity_main)
         initDrawerMenu()
         initVariables()
         loadContent()
@@ -70,8 +70,8 @@ class SingleGameActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
         supportActionBar?.title = game.name
         supportFragmentManager.beginTransaction()
                 .add(
-                        R.id.singleGameContainer,
-                        SingleGameFragment.newInstance(intent.getIntExtra("gameId", 1), game, lenght)
+                    R.id.fragmentContainer,
+                    SingleGameFragment.newInstance(intent.getIntExtra("gameId", 1), game, lenght)
                 )
                 .commit()
     }

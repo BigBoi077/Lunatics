@@ -18,7 +18,7 @@ class PlatformViewModel : ViewModel() {
     private val loadingManager = LoadingManager()
     private val errorManager = ErrorManager()
     val platforms = MutableLiveData(listOf<Platform>())
-    var wantedSize = 10
+    var next: String? = null
     var page: Int = 1
 
     private val rawgService by lazy {
@@ -37,7 +37,7 @@ class PlatformViewModel : ViewModel() {
         loadingManager.isLoading()
         rawgService.getPlatforms(
             RawgService.API_KEY,
-            wantedSize,
+            WANTED_SIZE,
             page,
         )
             .enqueue(object : Callback<PlatformResult> {
@@ -45,13 +45,13 @@ class PlatformViewModel : ViewModel() {
                     call: Call<PlatformResult>,
                     response: Response<PlatformResult>
                 ) {
+                    next = response.body()?.next
                     if (platforms.value!!.isEmpty()) {
                         platforms.value = response.body()!!.platforms
                     } else {
                         makeTempList(platforms, response)
                     }
                     loadingManager.isSuccess()
-                    wantedSize += 10
                     page++
                 }
 
@@ -67,7 +67,9 @@ class PlatformViewModel : ViewModel() {
         response: Response<PlatformResult>
     ) {
         val list = data.value as ArrayList<Platform>
-        list.addAll(response.body()!!.platforms)
+        if (response.body()?.platforms != null) {
+            list.addAll(response.body()!!.platforms)
+        }
         data.value = list
     }
 }

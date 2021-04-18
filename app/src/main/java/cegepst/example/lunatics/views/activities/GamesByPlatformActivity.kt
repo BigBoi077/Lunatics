@@ -7,6 +7,6 @@ import cegepst.example.lunatics.R
 class GamesByPlatformActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_games_by_platform)
+        setContentView(R.layout.activity_main)
     }
 }

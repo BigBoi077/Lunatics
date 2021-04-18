@@ -28,7 +28,7 @@ class SameSeriesActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_same_series)
+        setContentView(R.layout.activity_main)
         initDrawerMenu()
         initVariables()
         initFragment()

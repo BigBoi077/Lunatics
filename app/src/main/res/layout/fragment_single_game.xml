@@ -52,8 +52,7 @@
             android:layout_marginStart="24dp"
             android:text="@string/default_rating"
             android:drawablePadding="8dp"
-            android:textSize="16sp"
-            app:drawableStartCompat="@drawable/ic_celebration" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/gameWebsite"
@@ -62,8 +61,7 @@
             android:layout_margin="24dp"
             android:text="@string/default_website"
             android:textSize="16sp"
-            android:drawablePadding="8dp"
-            app:drawableLeftCompat="@drawable/ic_web_pack" />
+            android:drawablePadding="8dp" />
 
         <LinearLayout
             android:layout_width="match_parent"

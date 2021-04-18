@@ -28,7 +28,7 @@ class GameAchievementActivity : AppCompatActivity(),
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_game_achievement)
+        setContentView(R.layout.activity_main)
         initDrawerMenu()
         initVariables()
         loadContent()
@@ -68,7 +68,7 @@ class GameAchievementActivity : AppCompatActivity(),
         supportActionBar?.title = "Game achievements"
         supportFragmentManager.beginTransaction()
             .add(
-                R.id.achievementsContainer,
+                R.id.fragmentContainer,
                 GameAchievementsFragment.newInstance(intent.getIntExtra("gameId", 1), achievements)
             )
             .commit()
