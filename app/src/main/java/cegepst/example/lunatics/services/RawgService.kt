@@ -33,7 +33,7 @@ interface RawgService {
         @Query("key") apiKey: String,
         @Query("page_size") wantedSize: Int,
         @Query("page") page: Int,
-        @Query("page") montAgo: String,
+        @Query("dates") montAgo: String,
         @Query("ordering") ordering: String
     ): Call<GameResult>
 

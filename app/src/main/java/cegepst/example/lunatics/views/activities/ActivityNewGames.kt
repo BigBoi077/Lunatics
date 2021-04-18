@@ -30,21 +30,10 @@ class ActivityNewGames : AppCompatActivity(), NavigationView.OnNavigationItemSel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-    }
-
-    private fun setDrawerMenu(element: ActionBarDrawerToggle) {
-        actionBarDrawerToggle = element
-    }
-
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
-            return true
-        }
-        return super.onOptionsItemSelected(item)
+        initDrawerMenu()
+        initVariables()
+        initFragment()
+        loadContent()
     }
 
     override fun initDrawerMenu() {
@@ -100,5 +89,16 @@ class ActivityNewGames : AppCompatActivity(), NavigationView.OnNavigationItemSel
 
     private fun canLoadMoreGames(): Boolean {
         return games.size < MAX_GAMES
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
+            return true
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

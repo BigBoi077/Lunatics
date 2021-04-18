@@ -1,5 +1,6 @@
 package cegepst.example.lunatics.viewModels
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -42,6 +43,10 @@ class NewGamesViewModel : ViewModel(), Client {
         )
             .enqueue(object : Callback<GameResult> {
                 override fun onResponse(call: Call<GameResult>, response: Response<GameResult>) {
+                    Log.d("DEBUG", response.message())
+                    Log.d("DEBUG", response.isSuccessful.toString())
+                    Log.d("DEBUG", response.code().toString())
+                    Log.d("DEBUG", response.raw().toString())
                     if (games.value!!.isEmpty()) {
                         games.value = response.body()!!.games
                     } else {

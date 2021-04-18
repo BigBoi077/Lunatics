@@ -6,7 +6,7 @@ import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import cegepst.example.lunatics.R
 
-private const val SPLASH_DELAY = 1750L
+private const val SPLASH_DELAY = 1250L
 
 @Suppress("DEPRECATION")
 class SplashScreenActivity : AppCompatActivity() {
@@ -15,7 +15,7 @@ class SplashScreenActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash_screen)
         supportActionBar?.hide()
         Handler().postDelayed({
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, ActivityNewGames::class.java)
             startActivity(intent)
             finish()
         }, SPLASH_DELAY)

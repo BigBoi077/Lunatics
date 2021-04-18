@@ -36,17 +36,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         loadContent()
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
-            return true
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        return true
-    }
-
     override fun initDrawerMenu() {
         val drawerLayout = findViewById<DrawerLayout>(R.id.drawer)
         actionBarDrawerToggle = ActionBarDrawerToggle(this, drawerLayout, R.string.actionOpen, R.string.actionClose)
@@ -100,5 +89,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     private fun canLoadMoreGames(): Boolean {
         return games.size < MAX_GAMES
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
+            return true
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        return true
     }
 }
