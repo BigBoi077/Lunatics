@@ -1,5 +1,6 @@
 package cegepst.example.lunatics.views.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
@@ -68,7 +69,34 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
-            return true
+            when (item.itemId) {
+                R.id.popularGame -> {
+                    val intent = Intent(Intent(this, MainActivity::class.java))
+                    startActivity(intent)
+                    return true
+                }
+                R.id.newGames -> {
+                    val intent = Intent(Intent(this, ActivityNewGames::class.java))
+                    startActivity(intent)
+                    return true
+                }
+                R.id.gamesToCome -> {
+                    val intent = Intent(Intent(this, ActivityNewGames::class.java))
+                    startActivity(intent)
+                    return true
+                }
+                R.id.listPlatforms -> {
+                    val intent = Intent(Intent(this, ActivityNewGames::class.java))
+                    startActivity(intent)
+                    return true
+                }
+                R.id.gameGenres -> {
+                    val intent = Intent(Intent(this, ActivityNewGames::class.java))
+                    startActivity(intent)
+                    return true
+                }
+                else -> return false
+            }
         }
         return super.onOptionsItemSelected(item)
     }
@@ -81,7 +109,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         actionBarDrawerToggle = element
     }
 
-    fun actionLoad() {
+    private fun actionLoad() {
         if (canLoadMoreGames()) {
             viewModel.fetchGames()
         } else {

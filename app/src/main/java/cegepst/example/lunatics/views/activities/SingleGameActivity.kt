@@ -10,6 +10,7 @@ import cegepst.example.lunatics.models.baseModels.Game
 import cegepst.example.lunatics.models.baseModels.Platform
 import cegepst.example.lunatics.models.interfaces.BaseActivity
 import cegepst.example.lunatics.models.managers.DrawerMenuManager
+import cegepst.example.lunatics.viewModels.SameSeriesViewModel
 import cegepst.example.lunatics.viewModels.SingleGameViewModel
 import cegepst.example.lunatics.views.adapters.PlatformAdapter
 import cegepst.example.lunatics.views.fragments.SingleGameFragment
@@ -49,18 +50,19 @@ class SingleGameActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
     }
 
     override fun loadContent() {
-        val lambda = { game: Game -> launchFragment(game) }
-        viewModel.fetchSingleGames(intent.getIntExtra("gameId", 1), lambda)
+        val tempViewModel = ViewModelProvider(this).get(SameSeriesViewModel::class.java)
+        val lambda = { game: Game, length: Int -> launchFragment(game, length) }
+        viewModel.fetchSingleGames(intent.getIntExtra("gameId", 1), lambda, tempViewModel)
     }
 
-    private fun launchFragment(game: Game) {
+    private fun launchFragment(game: Game, lenght: Int) {
         supportActionBar?.title = game.name
         supportFragmentManager.beginTransaction()
-            .add(
-                R.id.singleGameContainer,
-                SingleGameFragment.newInstance(intent.getIntExtra("gameId", 1), game)
-            )
-            .commit()
+                .add(
+                        R.id.singleGameContainer,
+                        SingleGameFragment.newInstance(intent.getIntExtra("gameId", 1), game, lenght)
+                )
+                .commit()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

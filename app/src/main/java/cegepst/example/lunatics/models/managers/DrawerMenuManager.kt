@@ -13,6 +13,7 @@ import com.google.android.material.navigation.NavigationView
 class DrawerMenuManager(private var activity: Activity, private var supportActionBar: androidx.appcompat.app.ActionBar?) {
 
     private lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
+    private lateinit var navigationView: NavigationView
 
     fun handleChosenAction(item: MenuItem): Boolean {
         when (item.itemId) {
@@ -27,12 +28,18 @@ class DrawerMenuManager(private var activity: Activity, private var supportActio
                 return true
             }
             R.id.gamesToCome -> {
+                val intent = Intent(Intent(activity, ActivityNewGames::class.java))
+                activity.startActivity(intent)
                 return true
             }
             R.id.listPlatforms -> {
+                val intent = Intent(Intent(activity, ActivityNewGames::class.java))
+                activity.startActivity(intent)
                 return true
             }
             R.id.gameGenres -> {
+                val intent = Intent(Intent(activity, ActivityNewGames::class.java))
+                activity.startActivity(intent)
                 return true
             }
             else -> return false
@@ -53,7 +60,7 @@ class DrawerMenuManager(private var activity: Activity, private var supportActio
         if (supportActionBar != null) {
             supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         }
-        val navigationView = activity.findViewById<NavigationView>(R.id.drawerMenu)
-        navigationView.itemIconTintList = null
+        this.navigationView = activity.findViewById(R.id.drawerMenu)
+        this.navigationView.itemIconTintList = null
     }
 }

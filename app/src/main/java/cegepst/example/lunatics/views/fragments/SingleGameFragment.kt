@@ -5,6 +5,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.text.Html
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,7 +31,7 @@ class SingleGameFragment : Fragment() {
     private lateinit var gameDescription: TextView
     private lateinit var adapter: PlatformAdapter
     private lateinit var game: Game
-    private var isCollapsed = true
+    private var length = 0
     private var gameId: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,15 +62,22 @@ class SingleGameFragment : Fragment() {
         this.adapter.notifyDataSetChanged()
         this.gameDescription = view?.findViewById(R.id.gameDescription)!!
         setImage(game)
+        setSameSeriesButton()
         view!!.findViewById<TextView>(R.id.gameRating).text = "Rating | ${game.rating}"
         view!!.findViewById<TextView>(R.id.gameWebsite).text = game.website
         formatDescription(game.description)
         setOnClickEvents(game)
     }
 
+    private fun setSameSeriesButton() {
+        if (length == 0) {
+            view!!.findViewById<Button>(R.id.actionSameLineup).visibility = View.GONE
+        }
+    }
+
     private fun setImage(game: Game) {
         Glide.with(view!!.context).load(game.imageUrl).centerCrop()
-            .into(view?.findViewById(R.id.gameImage)!!)
+                .into(view?.findViewById(R.id.gameImage)!!)
     }
 
     private fun formatDescription(description: String) {
@@ -111,12 +119,14 @@ class SingleGameFragment : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance(gameId: Int, game: Game) =
-            SingleGameFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_GAME_ID, gameId.toString())
+        fun newInstance(gameId: Int, game: Game, length: Int) =
+                SingleGameFragment().apply {
+                    arguments = Bundle().apply {
+                        putString(ARG_GAME_ID, gameId.toString())
+                    }
+                    this.game = game
+                    this.length = length
+                    Log.d("LENGTH", this.length.toString())
                 }
-                this.game = game
-            }
     }
 }
