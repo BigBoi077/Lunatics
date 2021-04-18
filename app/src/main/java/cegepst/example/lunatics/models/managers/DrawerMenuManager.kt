@@ -5,6 +5,7 @@ import android.content.Intent
 import android.view.MenuItem
 import cegepst.example.lunatics.R
 import cegepst.example.lunatics.views.activities.ActivityNewGames
+import cegepst.example.lunatics.views.activities.GamesToComeActivity
 import cegepst.example.lunatics.views.activities.MainActivity
 
 class DrawerMenuManager {
@@ -21,7 +22,7 @@ class DrawerMenuManager {
                     activity.startActivity(intent)
                 }
                 R.id.gamesToCome -> {
-                    val intent = Intent(activity, ActivityNewGames::class.java)
+                    val intent = Intent(activity, GamesToComeActivity::class.java)
                     activity.startActivity(intent)
                 }
                 R.id.listPlatforms -> {

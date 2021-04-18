@@ -5,6 +5,8 @@ import java.time.format.DateTimeFormatter
 
 private const val YEAR_AGO = 1L
 private const val MONTH_AGO = 1L
+private const val NEXT_YEAR = 1L
+private const val ONE_DAY = 1L
 
 class DateFormatter {
 
@@ -19,6 +21,14 @@ class DateFormatter {
             val monthAgo =
                 LocalDate.now().minusMonths(MONTH_AGO).format(DateTimeFormatter.ofPattern(pattern))
             return "$monthAgo,${LocalDate.now().format(DateTimeFormatter.ofPattern(pattern))}"
+        }
+
+        fun getNextYear(pattern: String): String {
+            val nextYear =
+                LocalDate.now().plusYears(NEXT_YEAR).format(DateTimeFormatter.ofPattern(pattern))
+            return "${
+                LocalDate.now().plusDays(ONE_DAY).format(DateTimeFormatter.ofPattern(pattern))
+            },$nextYear"
         }
     }
 }
