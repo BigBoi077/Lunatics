@@ -3,6 +3,7 @@ package cegepst.example.lunatics.services
 import cegepst.example.lunatics.models.baseModels.Game
 import cegepst.example.lunatics.models.results.AchievementsResults
 import cegepst.example.lunatics.models.results.GameResult
+import cegepst.example.lunatics.models.results.GenreResult
 import cegepst.example.lunatics.models.results.PlatformResult
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -16,6 +17,7 @@ private const val GAME_ENDPOINT = "games"
 private const val ACHIEVEMENT_ENDPOINT = "achievements"
 private const val SAME_GAMES_ENDPOINT = "game-series"
 private const val PLATFORM_ENDPOINT = "platforms"
+private const val GENRE_ENDPOINT = "genres"
 
 interface RawgService {
 
@@ -69,6 +71,20 @@ interface RawgService {
         @Query("page") page: Int
     ): Call<PlatformResult>
 
+    @GET(GENRE_ENDPOINT)
+    fun getGenres(
+        @Query("key") apiKey: String,
+        @Query("page_size") wantedSize: Int,
+        @Query("page") page: Int
+    ): Call<GenreResult>
+
+    @GET(GAME_ENDPOINT)
+    fun getGamesByGenre(
+        @Query("key") apikey: String,
+        @Query("genres") genreId: String,
+        @Query("page_size") wantedSize: Int,
+        @Query("page") page: Int
+    ): Call<GameResult>
 
     companion object {
         const val API_KEY = "762f85b6be7c4c90ba98b1c82b67a075"

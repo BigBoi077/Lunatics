@@ -57,27 +57,27 @@ class SingleGameFragment : Fragment() {
     fun setContent(game: Game) {
         this.adapterSimple =
             SimplePlatformAdapter(game.platformParents as ArrayList<PlatformParent>)
-        this.recyclerView = view!!.findViewById(R.id.listPlatforms)
+        this.recyclerView = requireView().findViewById(R.id.listPlatforms)
         this.recyclerView.adapter = SimplePlatformAdapter(game.platformParents)
-        this.recyclerView.layoutManager = LinearLayoutManager(view!!.context)
+        this.recyclerView.layoutManager = LinearLayoutManager(requireView().context)
         this.adapterSimple.notifyDataSetChanged()
         this.gameDescription = view?.findViewById(R.id.gameDescription)!!
         setImage(game)
         setSameSeriesButton()
-        view!!.findViewById<TextView>(R.id.gameRating).text = "Rating | ${game.rating}"
-        view!!.findViewById<TextView>(R.id.gameWebsite).text = game.website
+        requireView().findViewById<TextView>(R.id.gameRating).text = "Rating | ${game.rating}"
+        requireView().findViewById<TextView>(R.id.gameWebsite).text = game.website
         formatDescription(game.description)
         setOnClickEvents(game)
     }
 
     private fun setSameSeriesButton() {
         if (length == 0) {
-            view!!.findViewById<Button>(R.id.actionSameLineup).visibility = View.GONE
+            requireView().findViewById<Button>(R.id.actionSameLineup).visibility = View.GONE
         }
     }
 
     private fun setImage(game: Game) {
-        Glide.with(view!!.context).load(game.imageUrl).centerCrop()
+        Glide.with(requireView().context).load(game.imageUrl).centerCrop()
                 .into(view?.findViewById(R.id.gameImage)!!)
     }
 
@@ -85,7 +85,7 @@ class SingleGameFragment : Fragment() {
         val description = stripHtml(description)
         val parts = description.split(".")
         val output = parts[0] + parts[1] + parts[2] + "."
-        view!!.findViewById<TextView>(R.id.gameDescription).text = output
+        requireView().findViewById<TextView>(R.id.gameDescription).text = output
     }
 
     private fun stripHtml(html: String): String {
@@ -93,10 +93,10 @@ class SingleGameFragment : Fragment() {
     }
 
     private fun setOnClickEvents(game: Game) {
-        view!!.findViewById<TextView>(R.id.gameWebsite).setOnClickListener {
+        requireView().findViewById<TextView>(R.id.gameWebsite).setOnClickListener {
             changeActivity(Intent(Intent.ACTION_VIEW, Uri.parse(game.website)))
         }
-        view!!.findViewById<Button>(R.id.actionSameLineup).setOnClickListener {
+        requireView().findViewById<Button>(R.id.actionSameLineup).setOnClickListener {
             changeActivity(
                 Intent(view?.context, SameSeriesActivity::class.java).putExtra(
                     "gameId",
@@ -104,7 +104,7 @@ class SingleGameFragment : Fragment() {
                 )
             )
         }
-        view!!.findViewById<Button>(R.id.actionTrophies).setOnClickListener {
+        requireView().findViewById<Button>(R.id.actionTrophies).setOnClickListener {
             changeActivity(
                 Intent(view?.context, GameAchievementActivity::class.java).putExtra(
                     "gameId",

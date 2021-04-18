@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Lunatics">
-        <activity android:name=".views.activities.GamesByPlatformActivity"></activity>
+        <activity android:name=".views.activities.GamesByGenreActivity"></activity>
+        <activity android:name=".views.activities.ActivityGenres" />
+        <activity android:name=".views.activities.GamesByPlatformActivity" />
         <activity android:name=".views.activities.PlatformsActivity" />
         <activity android:name=".views.activities.GamesToComeActivity" />
         <activity

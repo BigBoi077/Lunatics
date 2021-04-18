@@ -88,6 +88,32 @@ class MainViewModel : ViewModel() {
             })
     }
 
+    fun fetchGamesByGenre(genreId: Int) {
+        loadingManager.isLoading()
+        rawgService.getGamesByGenre(
+            RawgService.API_KEY,
+            genreId.toString(),
+            WANTED_SIZE,
+            page
+        )
+            .enqueue(object : Callback<GameResult> {
+                override fun onResponse(call: Call<GameResult>, response: Response<GameResult>) {
+                    if (games.value!!.isEmpty()) {
+                        games.value = response.body()!!.games
+                    } else {
+                        makeTempList(games, response)
+                    }
+                    loadingManager.isSuccess()
+                    page++
+                }
+
+                override fun onFailure(call: Call<GameResult>, t: Throwable) {
+                    errorManager.raiseError(t.message ?: "Unrecognized error")
+                    loadingManager.isError()
+                }
+            })
+    }
+
     private fun makeTempList(data: MutableLiveData<List<Game>>, response: Response<GameResult>) {
         val list = data.value as ArrayList<Game>
         list.addAll(response.body()!!.games)
