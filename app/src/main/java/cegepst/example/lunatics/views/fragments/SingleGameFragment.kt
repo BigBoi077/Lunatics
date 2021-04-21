@@ -84,7 +84,7 @@ class SingleGameFragment : Fragment() {
     private fun formatDescription(description: String) {
         val description = stripHtml(description)
         val parts = description.split(".")
-        val output = parts[0] + parts[1] + parts[2] + "."
+        val output = parts[0] + parts[1] + parts[2] + parts[3] + "."
         requireView().findViewById<TextView>(R.id.gameDescription).text = output
     }
 
