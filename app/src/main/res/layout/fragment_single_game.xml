@@ -134,8 +134,7 @@
                             android:backgroundTint="@color/JacksonPurple"
                             android:drawableLeft="@drawable/ic_sparkles"
                             android:text="@string/action_trophy"
-                            android:textColor="@color/SoftPeach"
-                            android:textSize="12sp" />
+                            android:textColor="@color/SoftPeach" />
 
                     </LinearLayout>
 
